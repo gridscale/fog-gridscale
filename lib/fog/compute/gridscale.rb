@@ -18,20 +18,65 @@ module Fog
       request_path 'fog/compute/gridscale/requests'
 
       #storage
-      request :delete_storage
-      request :create_storage
-      request :get_storage
-      request :get_storages
-      request :update_storage
+      request :storage_delete
+      request :storage_create
+      request :storage_get
+      request :storages_get
+      request :storage_update
 
       #server
-      request :get_servers
-      request :get_server
-      request :delete_server
-      request :create_server
-      request :update_server
+      request :servers_get
+      request :server_get
+      request :server_delete
+      request :server_create
+      request :server_update
 
+      request :server_power_off
+      request :server_power_on
+      request :server_power_get
 
+      request :server_relation_ipaddrs_get
+      request :server_relation_ipaddr_get
+      request :server_relation_ipaddr_remove
+      request :server_relation_ipaddr_add
+
+      request :server_relation_storages_get
+      request :server_relation_storage_get
+      request :server_relation_storage_remove
+      request :server_relation_storage_add
+      request :server_relation_storage_update
+
+      request :server_relation_networks_get
+      request :server_relation_network_get
+      request :server_relation_network_remove
+      request :server_relation_network_add
+      request :server_relation_network_update
+
+      request :server_relation_isoimages_get
+      request :server_relation_isoimage_get
+      request :server_relation_isoimage_remove
+      request :server_relation_isoimage_add
+      request :server_relation_isoimage_update
+
+      #network
+      request :network_delete
+      request :network_create
+      request :network_get
+      request :networks_get
+      request :network_update
+
+      #ip
+      request :ip_delete
+      request :ip_create
+      request :ip_get
+      request :ips_get
+
+      #isoimage
+      request :isoimage_remove
+      request :isoimage_add
+      request :isoimage_get
+      request :isoimages_get
+      request :isoimage_update
 
       class Mock
         def self.data
@@ -91,7 +136,7 @@ module Fog
           unless response.body.empty?
             response.body = Fog::JSON.decode(response.body)
           end
-          pp response.body
+          return response.body
         end
       end
     end

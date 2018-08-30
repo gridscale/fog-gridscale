@@ -2,11 +2,11 @@ module Fog
   module Compute
     class Gridscale
       class Real
-        def get_storage(storage_uuid)
+        def server_get(server_uuid)
           request(
               :expects => [200],
               :method  => 'GET',
-              :path    => "/objects/storages/#{storage_uuid}"
+              :path    => "/objects/servers/#{server_uuid}"
           )
         end
       end

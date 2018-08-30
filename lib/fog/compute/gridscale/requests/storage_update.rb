@@ -4,7 +4,7 @@ module Fog
       # noinspection RubyStringKeysInHashInspection
       class Real
 
-        def update_storage(storage_uuid, payload={})
+        def storage_update(storage_uuid, payload={})
           # update_options = {
           #     # :name       => name,
           # }

@@ -16,11 +16,9 @@ module Fog
         # @raise [Fog::Compute::DigitalOceanV2::ServiceError]
         # @see https://developers.digitalocean.com/documentation/v2/#droplets
         def all()
-          data = service.get_servers()
-          links = data.body["links"]
-          get_paged_links(links)
-          droplets = data.body
-          load(droplets)
+          data = service.servers_get()
+          return data
+
         end
 
         # Retrieves server
@@ -32,10 +30,8 @@ module Fog
         # @raise [Fog::Compute::DigitalOceanV2::ServiceError]
         # @see https://developers.digitalocean.com/documentation/v2/#retrieve-an-existing-droplet-by-id
         def get(id)
-          server = service.get_server(id).body
-          new(server) if server
-        rescue Fog::Errors::NotFound
-          nil
+          server = service.server_get(id)
+          return server
         end
       end
     end

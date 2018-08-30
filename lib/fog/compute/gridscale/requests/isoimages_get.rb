@@ -2,14 +2,12 @@ module Fog
   module Compute
     class Gridscale
       class Real
-        def get_storages()
-          # response        = Excon::Response.new
+        def isoimages_get()
           request(
               :expects => [200],
               :method  => 'GET',
-              :path    => "/objects/storages"
+              :path    => "/objects/isoimages"
           )
-          # return response.body
         end
       end
     end

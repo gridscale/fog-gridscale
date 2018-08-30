@@ -13,12 +13,12 @@ module Fog
         # @raise [Fog::Compute::DigitalOceanV2::InternalServerError] - HTTP 500
         # @raise [Fog::Compute::DigitalOceanV2::ServiceError]
         # @see https://developers.digitalocean.com/documentation/v2/#list-all-keys
-        def all(filters = {})
-          data = service.get_storages(filters)
-          links = data.body["links"]
-          get_paged_links(links)
-          keys = data.body["ssh_keys"]
-          load(keys)
+        def all
+          data = service.storages_get()
+          # links = data.body["links"]
+          # get_paged_links(links)
+          # keys = data.body["storages"]
+          return data
         end
 
         # Returns ssh key
@@ -29,10 +29,11 @@ module Fog
         # @raise [Fog::Compute::DigitalOceanV2::ServiceError]
         # @see https://developers.digitalocean.com/documentation/v2/#retrieve-an-existing-key
         def get(id)
-          key = service.get_storage(id).body['storage']
-          new(key) if key
-        rescue Fog::Errors::NotFound
-          nil
+          key = service.storage_get(id)
+        #   new(key) if key
+        # rescue Fog::Errors::NotFound
+        #   nil
+          return key
         end
       end
     end

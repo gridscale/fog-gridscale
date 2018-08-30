@@ -1,26 +1,22 @@
 module Fog
   module Compute
     class Gridscale
-      # noinspection RubyStringKeysInHashInspection
       class Real
-        def create_server(name, cores, memory)
+        def server_relation_storage_update(server_uuid, storage_uuid, options = {})
 
           create_options = {
-              :name   => name,
-              :location_uuid => "45ed677b-3702-4b36-be2a-a2eab9827950",
-              :cores   => cores,
-              :memory   => memory
+
           }
+          create_options[:bootdevice] = options[:bootdevice]
 
           encoded_body = Fog::JSON.encode(create_options)
-
           request(
               :expects => [202],
               :headers => {
                   'Content-Type' => "application/json; charset=UTF-8",
               },
-              :method  => 'POST',
-              :path    => '/objects/servers',
+              :method  => 'PATCH',
+              :path    => "/objects/servers/#{server_uuid}/storages/#{storage_uuid}",
               :body    => encoded_body,
               )
         end

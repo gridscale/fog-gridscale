@@ -3,14 +3,14 @@ module Fog
     class Gridscale
       # noinspection RubyStringKeysInHashInspection
       class Real
-        def delete_storage(storage_uuid)
+        def server_relation_ipaddr_remove(server_uuid, ip_uuid)
           request(
-              :expects         => [204],
+              :expects         => [202],
               :headers         => {
                   'Content-Type' => "application/json; charset=UTF-8",
               },
               :method          => 'DELETE',
-              :path            => "/objects/storages/#{storage_uuid}",
+              :path            => "/objects/servers/#{server_uuid}/ips/#{ip_uuid}",
               )
         end
       end

@@ -51,7 +51,7 @@ module Fog
 
 
 
-          data = service.create_server(name, cores, memory)
+          data = service.server_create(name, cores, memory)
 
           merge_attributes(data.body['server'])
           true
@@ -59,7 +59,19 @@ module Fog
 
         def delete
           requires :object_uuid
-          response = service.delete_server object_uuid
+          response = service.server_delete object_uuid
+          response.body
+        end
+
+        def destroy
+          requires :object_uuid
+          response = service.server_power_off(object_uuid)
+          response
+        end
+
+        def power_on
+          requires :object_uuid
+          response = service.server_power_on(object_uuid)
           response.body
         end
 

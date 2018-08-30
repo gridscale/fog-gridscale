@@ -4,7 +4,7 @@ module Fog
       # noinspection RubyStringKeysInHashInspection
       class Real
 
-        def update_server(server_uuid, payload)
+        def server_update(server_uuid, payload)
           # update_options = {
           #     :name       => name,
           # }
