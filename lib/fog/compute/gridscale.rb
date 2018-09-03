@@ -21,6 +21,7 @@ module Fog
       request :storage_delete
       request :storage_create
       request :storage_get
+      request :storage_events_get
       request :storages_get
       request :storage_update
 
@@ -58,10 +59,13 @@ module Fog
       request :server_relation_isoimage_add
       request :server_relation_isoimage_update
 
+      request :server_events_get
+
       #network
       request :network_delete
       request :network_create
       request :network_get
+      request :network_events_get
       request :networks_get
       request :network_update
 
@@ -69,14 +73,47 @@ module Fog
       request :ip_delete
       request :ip_create
       request :ip_get
+      request :ip_events_get
       request :ips_get
 
       #isoimage
       request :isoimage_remove
       request :isoimage_add
       request :isoimage_get
+      request :isoimage_events_get
       request :isoimages_get
       request :isoimage_update
+
+      #cas
+      request :cas_create
+      request :cass_get
+      request :cas_delete
+      request :cas_get
+      request :cas_update
+
+      #snapshot
+      request :snapshot_add
+      request :snapshots_get
+      request :snapshot_delete
+      request :snapshot_get
+      request :snapshot_update
+
+      #snapshot_schedule
+      request :snapshot_schedule_add
+      request :snapshot_schedules_get
+      request :snapshot_schedule_delete
+      request :snapshot_schedule_get
+      request :snapshot_schedule_update
+
+
+      #storage
+      request :template_delete
+      request :template_add
+      request :template_get
+      request :template_events_get
+      request :templates_get
+      request :template_update
+
 
       class Mock
         def self.data
