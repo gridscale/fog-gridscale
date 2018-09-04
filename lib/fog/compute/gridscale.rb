@@ -90,6 +90,8 @@ module Fog
       request :cas_delete
       request :cas_get
       request :cas_update
+      request :cas_events_get
+      request :cas_actions_get
 
       #snapshot
       request :snapshot_add
@@ -106,13 +108,57 @@ module Fog
       request :snapshot_schedule_update
 
 
-      #storage
+      #template
       request :template_delete
       request :template_add
       request :template_get
       request :template_events_get
       request :templates_get
       request :template_update
+
+      #deleted object
+      request :deleted_ips_get
+      request :deleted_isoimages_get
+      request :deleted_networks_get
+      request :deleted_servers_get
+      request :deleted_snapshots_get
+      request :deleted_storages_get
+      request :deleted_templates_get
+
+      #load balancer
+      request :load_balancer_delete
+      request :load_balancer_create
+      request :load_balancer_get
+      request :load_balancer_events_get
+      request :load_balancers_get
+      request :load_balancer_update
+
+      #firewall
+      request :firewall_delete
+      request :firewall_create
+      request :firewall_get
+      request :firewall_events_get
+      request :firewalls_get
+      request :firewall_update
+
+      #marketplace template
+      request :marketplace_template_delete
+      request :marketplace_template_create
+      request :marketplace_template_get
+      request :marketplace_template_events_get
+      request :marketplace_templates_get
+      request :marketplace_template_update
+
+      #request
+      request :request_get
+
+      #Object Storage
+      request :access_keys_get
+      request :access_key_get
+      request :access_key_create
+      request :access_key_delete
+      request :buckets_get
+      request :bucket_get
 
 
       class Mock
