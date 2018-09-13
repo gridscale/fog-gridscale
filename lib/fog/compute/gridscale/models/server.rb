@@ -75,6 +75,12 @@ module Fog
           response.body
         end
 
+        def shutdown
+          requires :object_uuid
+          response = service.server_shutdown(object_uuid)
+          response
+        end
+
         # def ready?
         #   status == 'active'
         # end

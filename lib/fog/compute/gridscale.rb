@@ -32,6 +32,7 @@ module Fog
       request :server_create
       request :server_update
 
+      request :server_shutdown
       request :server_power_off
       request :server_power_on
       request :server_power_get
