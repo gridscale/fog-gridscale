@@ -2,9 +2,7 @@ module Fog
   module Compute
     class Gridscale
       class Real
-        def server_shutdown(server_uuid)
-
-
+        def server_shutodown(server_uuid)
           request(
               :expects => [204],
               :headers => {
@@ -15,7 +13,6 @@ module Fog
               )
         end
       end
-
     end
   end
 end

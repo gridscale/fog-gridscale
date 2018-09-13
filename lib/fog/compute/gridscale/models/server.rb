@@ -11,7 +11,7 @@ module Fog
         attribute :availability_zone
         attribute :current_price
         attribute :power
-        attribute :status,    :aliases => 'state'
+        attribute :status
         attribute :cores
         attribute :name
         attribute :location_uuid
@@ -47,13 +47,13 @@ module Fog
 
         def save
           raise Fog::Errors::Error.new('Re-saving an existing object may create a duplicate') if persisted?
-          # requires :name, :cores, :memory
+          requires :name, :cores, :memory
 
-          payload = {}
 
-          data = service.server_create(payload)
 
-          merge_attributes(data)
+          data = service.server_create(name, cores, memory)
+
+          merge_attributes(data.body['server'])
           true
         end
 
@@ -69,21 +69,21 @@ module Fog
           response
         end
 
-        def power_status
-          requires :object_uuid
-          response = service.server_power_get(object_uuid)
-          response.body
-        end
-
         def power_on
           requires :object_uuid
           response = service.server_power_on(object_uuid)
           response.body
         end
 
-        def ready?
-          status == true
+        def shutdown
+          requires :object_uuid
+          response = service.server_shutdown(object_uuid)
+          response
         end
+
+        # def ready?
+        #   status == 'active'
+        # end
 
 
         # def actions
@@ -110,10 +110,9 @@ module Fog
         #   perform_action :power_cycle
         # end
         #
-        def shutdown
-          requires :object_uuid
-          service.server_shutdown object_uuid
-        end
+        # def shutdown
+        #   perform_action :shutdown
+        # end
         #
         # def power_off
         #   perform_action :power_off
