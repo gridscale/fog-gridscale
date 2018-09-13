@@ -3,15 +3,15 @@ module Fog
     class Gridscale
       # noinspection RubyStringKeysInHashInspection
       class Real
-        def network_create(name)
+        def network_create(payload)
 
-          create_options = {
-              :name   => name,
-              :location_uuid => "45ed677b-3702-4b36-be2a-a2eab9827950",
+          # create_options = {
+          #     :name   => name,
+          #     :location_uuid => "45ed677b-3702-4b36-be2a-a2eab9827950",
+          #
+          # }
 
-          }
-
-          encoded_body = Fog::JSON.encode(create_options)
+          encoded_body = Fog::JSON.encode(payload)
 
           request(
               :expects => [202],

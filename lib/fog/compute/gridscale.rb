@@ -13,6 +13,9 @@ module Fog
       collection :storages
       model :server
       collection :servers
+      model :network
+      collection :networks
+
 
 
       request_path 'fog/compute/gridscale/requests'
@@ -60,6 +63,7 @@ module Fog
       request :server_relation_isoimage_update
 
       request :server_events_get
+      request :server_shutdown
 
       #network
       request :network_delete
@@ -219,7 +223,7 @@ module Fog
           unless response.body.empty?
             response.body = Fog::JSON.decode(response.body)
           end
-          return response.body
+          response
         end
       end
     end

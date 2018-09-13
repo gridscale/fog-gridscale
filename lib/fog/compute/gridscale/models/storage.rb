@@ -8,7 +8,7 @@ module Fog
 
         attribute :name,        :aliases => 'metadata_namespace'
         attribute :object_uuid
-          attribute :location_uuid
+        attribute :location_uuid
         attribute :storage_type,         :aliases => 'status_node_info_os_image'
         attribute :license_product_no , :aliases => 'status_node_info_operating_system'
         attribute :capacity,   :aliases => 'status_node_info_kernel_version'

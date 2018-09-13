@@ -15,10 +15,16 @@ module Fog
         # @raise [Fog::Compute::DigitalOceanV2::InternalServerError] - HTTP 500
         # @raise [Fog::Compute::DigitalOceanV2::ServiceError]
         # @see https://developers.digitalocean.com/documentation/v2/#droplets
-        def all()
-          data = service.servers_get()
-          return data
+        # def all()
+        #   data = service.servers_get()['servers'].values
+        #   return data
+        #
+        # end
 
+        def all(filters={})
+          data = service.servers_get(filters)
+          droplets = data.body["servers"].values
+          load(droplets)
         end
 
         # Retrieves server
@@ -29,9 +35,11 @@ module Fog
         # @raise [Fog::Compute::DigitalOceanV2::InternalServerError] - HTTP 500
         # @raise [Fog::Compute::DigitalOceanV2::ServiceError]
         # @see https://developers.digitalocean.com/documentation/v2/#retrieve-an-existing-droplet-by-id
-        def get(id)
-          server = service.server_get(id)
-          return server
+        def get(object_uuid)
+          server = service.server_get(object_uuid).body['server']
+          new(server) if server
+        rescue Fog::Errors::NotFound
+          nil
         end
       end
     end

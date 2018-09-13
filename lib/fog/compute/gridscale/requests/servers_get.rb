@@ -2,11 +2,12 @@ module Fog
   module Compute
     class Gridscale
       class Real
-        def servers_get()
+        def servers_get(filters={})
           request(
               :expects => [200],
               :method  => 'GET',
-              :path    => "/objects/servers"
+              :path    => "/objects/servers",
+              :query   => filters
           )
         end
       end
