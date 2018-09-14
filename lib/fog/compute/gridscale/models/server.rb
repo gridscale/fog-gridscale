@@ -69,8 +69,7 @@ module Fog
           response
         end
 
-        def power_on
-          requires :object_uuid
+        def start
           response = service.server_power_on(object_uuid)
           response.body
         end
@@ -81,10 +80,17 @@ module Fog
           response
         end
 
-        # def ready?
-        #   status == 'active'
-        # end
+        def stop
+          requires :object_uuid
+          response = service.server_shutdown(object_uuid)
+          response
+        end
 
+         def ready?
+		requires :object_uuid
+		response = service.server_power_get(object_uuid)
+		response.body['power']
+         end
 
         # def actions
         #   requires :id
