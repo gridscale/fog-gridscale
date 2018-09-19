@@ -3,32 +3,34 @@ require 'fog/compute/gridscale/models/paging_collection'
 module Fog
   module Compute
     class Gridscale
-      class Networks < Fog::Compute::Gridscale::PagingCollection
-        model Fog::Compute::Gridscale::Network
-
-        # Returns list of ssh keys
-        # @return [Fog::Compute::DigitalOceanV2::Sshkeys] Retrieves a list of ssh keys.
+      class Ips < Fog::Compute::Gridscale::PagingCollection
+        model Fog::Compute::Gridscale::Ip
+        # Returns list of servers
+        # @return [Fog::Compute::DigitalOceanV2::Servers]
         # @raise [Fog::Compute::DigitalOceanV2::NotFound] - HTTP 404
         # @raise [Fog::Compute::DigitalOceanV2::BadRequest] - HTTP 400
         # @raise [Fog::Compute::DigitalOceanV2::InternalServerError] - HTTP 500
         # @raise [Fog::Compute::DigitalOceanV2::ServiceError]
-        # @see https://developers.digitalocean.com/documentation/v2/#list-all-keys
+        # @see https://developers.digitalocean.com/documentation/v2/#droplets
+
+
         def all(filters={})
-          data = service.networks_get(filters)
-          droplets = data.body["networks"].values
-          load(droplets)
+          data = service.ips_get(filters)
+          ips = data.body["ips"].values
+          load(ips)
         end
 
-        # Returns ssh key
-        # @return [Fog::Compute::DigitalOceanV2::Sshkeys] Retrieves a list of ssh keys.
+        # Retrieves server
+        # @param [String] id for server to be returned
+        # @return [Fog::Compute::DigitalOceanV2:Server]
         # @raise [Fog::Compute::DigitalOceanV2::NotFound] - HTTP 404
         # @raise [Fog::Compute::DigitalOceanV2::BadRequest] - HTTP 400
         # @raise [Fog::Compute::DigitalOceanV2::InternalServerError] - HTTP 500
         # @raise [Fog::Compute::DigitalOceanV2::ServiceError]
-        # @see https://developers.digitalocean.com/documentation/v2/#retrieve-an-existing-key
+        # @see https://developers.digitalocean.com/documentation/v2/#retrieve-an-existing-droplet-by-id
         def get(object_uuid)
-          network = service.network_get(object_uuid).body['network']
-          new(network) if network
+          ip = service.ip_get(object_uuid).body['ip']
+          new(ip) if ip
         rescue Fog::Errors::NotFound
           nil
         end

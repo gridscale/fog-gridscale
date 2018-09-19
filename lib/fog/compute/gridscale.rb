@@ -15,6 +15,8 @@ module Fog
       collection :servers
       model :network
       collection :networks
+      model :ip
+      collection :ips
 
 
 

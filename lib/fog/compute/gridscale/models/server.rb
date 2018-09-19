@@ -44,6 +44,22 @@ module Fog
         #     net['ip_address']
         #   end
         # end
+        #
+        def public_ip_address
+          ipv4_address
+        end
+
+        def ipv4_address
+          if (net = relations['public_ips'].find {|n|n['family']==4})
+            net['ip']
+          end
+        end
+
+        def ipv6_address
+          if (net = relations['public_ips'].find {|n|n['family']==6})
+            net['ip']
+          end
+        end
 
         def save
           raise Fog::Errors::Error.new('Re-saving an existing object may create a duplicate') if persisted?
