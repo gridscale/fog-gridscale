@@ -7,6 +7,7 @@ module Fog
       #
       class Server < Fog::Compute::Server
         identity :object_uuid
+
         attribute :auto_recovery
         attribute :availability_zone
         attribute :current_price
@@ -28,6 +29,10 @@ module Fog
         attribute :change_time
         attribute :console_token
         attribute :location_country
+        attribute :ipaddr_uuid
+        attribute :network_uuid
+        attribute :public_ips
+        attribute :networks
 
         # def public_ip_address
         #   ipv4_address
@@ -64,9 +69,13 @@ module Fog
         def save
           raise Fog::Errors::Error.new('Re-saving an existing object may create a duplicate') if persisted?
           requires :name, :cores, :memory
+          relations = {}
+          relations[:ipaddr_uuid] = ipaddr_uuid
+          relations[:network_uuid] = network_uuid
 
 
-          data = service.server_create(name, cores, memory)
+
+          data = service.server_create(name, cores, memory, relations)
 
           merge_attributes(data.body)
           true

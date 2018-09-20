@@ -16,7 +16,7 @@ module Fog
         attribute :location_iata
         attribute :location_name
         attribute :location_uuid
-        attribute :object_uuid
+        attribute :object_uuid, :aliases => 'ipaddr_uuid'
         attribute :partner_uuid
         attribute :prefix
         attribute :relations
