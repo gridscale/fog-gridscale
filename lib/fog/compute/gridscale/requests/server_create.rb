@@ -34,11 +34,6 @@ module Fog
           end
 
           create_options[:relations] = relation
-          print (create_options)
-          # create_options[:relations]['public_ips'] = []
-          # "compute_attributes"=>{"cores"=>"1", "memory"=>"2","relations"=>{"public_ips"=>["ipaddr_uuid"=>'233192a8-165d-49fb-af80-58544e74bc44']}}
-
-          # create_options[:relations] = {'isoimages'=>[],'networks'=>['network_uuid'=>'1044fdf2-a68e-467f-abfd-3b349b962707'],'public_ips'=>['ipaddr_uuid'=>options[:ipaddr_uuid]],'storages'=>[]}
           encoded_body = Fog::JSON.encode(create_options)
 
           request(

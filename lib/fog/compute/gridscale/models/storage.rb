@@ -41,7 +41,7 @@ module Fog
 
           data = service.storage_create(name, capacity, options)
 
-          merge_attributes(data)
+          merge_attributes(data.body)
           true
         end
 

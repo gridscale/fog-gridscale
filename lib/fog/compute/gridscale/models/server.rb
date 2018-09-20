@@ -23,6 +23,8 @@ module Fog
         attribute :location_name
         attribute :legacy
         attribute :memory
+        attribute :object_uuid
+        attribute :server_uuid
         attribute :create_time
         attribute :relations
         attribute :usage_in_minutes_memory
