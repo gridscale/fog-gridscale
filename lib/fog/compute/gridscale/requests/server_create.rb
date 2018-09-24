@@ -33,6 +33,12 @@ module Fog
             relation[:networks] = Array([])
           end
 
+          if relations[:storage_uuid] != nil &&  relations[:storage_uuid] != ""
+            relation[:storages] = [:storage_uuid => relations[:storage_uuid]]
+          else
+            relation[:storages] = Array([])
+          end
+
           create_options[:relations] = relation
           encoded_body = Fog::JSON.encode(create_options)
 
