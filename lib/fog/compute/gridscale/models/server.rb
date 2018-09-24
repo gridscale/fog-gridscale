@@ -37,7 +37,8 @@ module Fog
         attribute :network_uuid
         attribute :public_ips
         attribute :networks
-
+        attribute :sotrages
+        attribute :storage_uuid
         # def public_ip_address
         #   ipv4_address
         # end
@@ -126,15 +127,15 @@ module Fog
 
         def stop
           requires :object_uuid
-          response = service.server_shutdown(object_uuid)
+          response = service.server_power_off(object_uuid)
           response
         end
 
-         def ready?
-		requires :object_uuid
-		response = service.server_power_get(object_uuid)
-		response.body['power']
-         end
+        def ready?
+          requires :object_uuid
+          response = service.server_power_get(object_uuid)
+          response.body['power']
+        end
 
         # def actions
         #   requires :id

@@ -2,12 +2,13 @@ module Fog
   module Compute
     class Gridscale
       class Real
-        def storages_get()
+        def storages_get(filters={})
           # response        = Excon::Response.new
           request(
               :expects => [200],
               :method  => 'GET',
-              :path    => "/objects/storages"
+              :path    => "/objects/storages",
+              :query   => filters
           )
           # return response.body
         end
