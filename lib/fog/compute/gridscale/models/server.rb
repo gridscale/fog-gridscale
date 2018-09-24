@@ -15,6 +15,8 @@ module Fog
         attribute :status
         attribute :cores
         attribute :name
+        attribute :storage
+        attribute :interfaces_attributes
         attribute :location_uuid
         attribute :usage_in_minutes_cores
         attribute :labels
@@ -70,12 +72,28 @@ module Fog
 
         def save
           raise Fog::Errors::Error.new('Re-saving an existing object may create a duplicate') if persisted?
-          requires :name, :cores, :memory
-          relations = {}
-          relations[:ipaddr_uuid] = ipaddr_uuid
-          relations[:network_uuid] = network_uuid
+          requires :name, :cores, :memory, :storage, :interfaces_attributes
+          relations = {
+            :isoimages => [],
+	  }
 
-
+	  networks = []
+          public_ips = []
+          storages = []
+          interfaces_attributes.each do |key, value|
+            if value["ipaddr_uuid"].present? && value["ipaddr_uuid"] != ""
+              public_ips << {"ipaddr_uuid"=>value["ipaddr_uuid"]}
+            end
+            if value["network_uuid"].present? && value["network_uuid"] != ""
+              networks << {"network_uuid"=>value["network_uuid"]}
+            end
+          end
+          if storage.present? && storage > 0
+            storages << {"create"=>{"name"=>"#{name} Storage", "capacity"=>storage, "location_uuid"=>"45ed677b-3702-4b36-be2a-a2eab9827950","storage_type"=>"storage"}, "relation"=>{"bootdevice"=>true}}
+          end 
+	  relations[:public_ips] = public_ips
+	  relations[:networks] = networks
+	  relations[:storages] = storages
 
           data = service.server_create(name, cores, memory, relations)
 
