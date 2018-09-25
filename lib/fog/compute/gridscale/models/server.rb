@@ -86,7 +86,11 @@ module Fog
               public_ips << {"ipaddr_uuid"=>value["ipaddr_uuid"]}
             end
             if value["network_uuid"].present? && value["network_uuid"] != ""
-              networks << {"network_uuid"=>value["network_uuid"]}
+	      if key == "0"
+                networks << {"network_uuid"=>value["network_uuid"], "bootdevice"=>true}
+              else
+                networks << {"network_uuid"=>value["network_uuid"]}
+              end
             end
           end
           if storage.present? && storage > 0
