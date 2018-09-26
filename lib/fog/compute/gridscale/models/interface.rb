@@ -25,6 +25,7 @@ module Fog
         attribute :ipaddr_uuid
         attribute :network_uuid
         attribute :mac
+        attribute :bootable
 
 
 

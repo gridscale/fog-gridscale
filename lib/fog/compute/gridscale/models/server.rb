@@ -39,22 +39,9 @@ module Fog
         attribute :networks
         attribute :sotrages
         attribute :storage_uuid
-        # def public_ip_address
-        #   ipv4_address
-        # end
-        #
-        # def ipv6_address
-        #   if (net = networks['v6'].find { |n| n['type'] == 'public' })
-        #     net['ip_address']
-        #   end
-        # end
-        #
-        # def ipv4_address
-        #   if (net = networks['v4'].find { |n| n['type'] == 'public' })
-        #     net['ip_address']
-        #   end
-        # end
-        #
+        attribute :interfaces
+        attribute :mac
+
         def public_ip_address
           ipv4_address
         end
@@ -71,14 +58,23 @@ module Fog
           end
         end
 
+        # def mac
+        #   require :server_uuid
+        #   if service.server_get(:server_uuid).relations['networks']
+        #     service.server_get(:server_uuid).relations['networks'].each do |network|
+        #       network['mac']
+        #     end
+        #   end
+        # end
+
         def save
           raise Fog::Errors::Error.new('Re-saving an existing object may create a duplicate') if persisted?
           requires :name, :cores, :memory, :storage, :interfaces_attributes
           relations = {
             :isoimages => [],
-	  }
+          }
 
-	  networks = []
+	        networks = []
           public_ips = []
           storages = []
           interfaces_attributes.each do |key, value|
@@ -92,9 +88,9 @@ module Fog
           if storage.present? && storage > 0
             storages << {"create"=>{"name"=>"#{name} Storage", "capacity"=>storage, "location_uuid"=>"45ed677b-3702-4b36-be2a-a2eab9827950","storage_type"=>"storage"}, "relation"=>{"bootdevice"=>true}}
           end 
-	  relations[:public_ips] = public_ips
-	  relations[:networks] = networks
-	  relations[:storages] = storages
+          relations[:public_ips] = public_ips
+          relations[:networks] = networks
+          relations[:storages] = storages
 
           data = service.server_create(name, cores, memory, relations)
 
@@ -137,90 +133,7 @@ module Fog
           response.body['power']
         end
 
-        # def actions
-        #   requires :id
-        #   response = service.list_droplet_actions id
-        #   response.body
-        # end
-        #
-        # def action(action_id)
-        #   requires :id
-        #   response = service.get_droplet_action(id, action_id)
-        #   response.body
-        # end
-
-        # def reboot
-        #   perform_action :reboot_server
-        # end
-        #
-        # def disable_backups
-        #   perform_action :disable_backups
-        # end
-        #
-        # def power_cycle
-        #   perform_action :power_cycle
-        # end
-        #
-        # def shutdown
-        #   perform_action :shutdown
-        # end
-        #
-        # def power_off
-        #   perform_action :power_off
-        # end
-        #
-        # def power_on
-        #   perform_action :power_on
-        # end
-        #
-        # def restore(image)
-        #   perform_action :restore, image
-        # end
-        #
-        # def password_reset
-        #   perform_action :password_reset
-        # end
-        #
-        # def resize(resize_disk, size)
-        #   perform_action :resize, resize_disk, size
-        # end
-        #
-        # def rebuild(image)
-        #   perform_action :rebuild, image
-        # end
-        #
-        # def rename(name)
-        #   perform_action :rename, name
-        # end
-        #
-        # def change_kernel(kernel)
-        #   perform_action :change_kernel, kernel
-        # end
-        #
-        # def enable_ipv6
-        #   perform_action :enable_ipv6
-        # end
-        #
-        # def enable_private_networking
-        #   perform_action :enable_private_networking
-        # end
-        #
-        # def snapshot(name)
-        #   perform_action :snapshot, name
-        # end
-        #
-        # def upgrade
-        #   perform_action :upgrade
-        # end
-
         private
-
-        # Performs a droplet action with the given set of arguments.
-        # def perform_action(action, *args)
-        #   requires :id
-        #   response = service.send(action, id, *args)
-        #   response.body
-        # end
       end
     end
   end
