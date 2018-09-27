@@ -5,12 +5,6 @@ module Fog
       class Real
 
         def access_key_create()
-          # update_options = {
-          #     :name       => name,
-          # }
-
-          # encoded_body = Fog::JSON.encode()
-
           request(
               :expects => [202],
               :headers => {
@@ -18,7 +12,6 @@ module Fog
               },
               :method  => 'POST',
               :path    => "/objects/objectstorages/access_keys",
-              # :body    => encoded_body,
               )
         end
       end

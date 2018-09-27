@@ -5,10 +5,6 @@ module Fog
       class Real
 
         def cas_update(cas_uuid, payload)
-          # update_options = {
-          #     :name       => name,
-          # }
-
           encoded_body = Fog::JSON.encode(payload)
 
           request(

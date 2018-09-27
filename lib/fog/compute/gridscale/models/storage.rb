@@ -6,22 +6,22 @@ module Fog
       class Storage < Fog::Model
         identity :object_uuid
 
-        attribute :name,        :aliases => 'metadata_namespace'
+        attribute :name
         attribute :object_uuid
         attribute :location_uuid
-        attribute :storage_type,         :aliases => 'status_node_info_os_image'
-        attribute :license_product_no , :aliases => 'status_node_info_operating_system'
-        attribute :capacity,   :aliases => 'status_node_info_kernel_version'
-        attribute :labels,   :aliases => 'status_node_info_kernel_version'
-        attribute :status,   :aliases => 'status_node_info_kernel_version'
-        # attribute :create_time
-        attribute :change_time,   :aliases => 'status_node_info_kernel_version'
-        attribute :current_price,   :aliases => 'status_node_info_kernel_version'
-        attribute :location_uuid,   :aliases => 'status_node_info_kernel_version'
-        attribute :location_name,   :aliases => 'status_node_info_kernel_version'
-        attribute :location_country,   :aliases => 'status_node_info_kernel_version'
-        attribute :location_iata,   :aliases => 'status_node_info_kernel_version'
-        attribute :relations,   :aliases => 'status_node_info_kernel_version'
+        attribute :storage_type
+        attribute :license_product_no
+        attribute :capacity
+        attribute :labels
+        attribute :status
+        attribute :create_time
+        attribute :change_time
+        attribute :current_price
+        attribute :location_uuid
+        attribute :location_name
+        attribute :location_country
+        attribute :location_iata
+        attribute :relations
 
 
 

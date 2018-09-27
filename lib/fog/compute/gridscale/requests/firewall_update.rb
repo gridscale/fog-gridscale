@@ -5,9 +5,6 @@ module Fog
       class Real
 
         def firewall_update(firewall_uuid, payload)
-          # update_options = {
-          #     :name       => name,
-          # }
 
           encoded_body = Fog::JSON.encode(payload)
 

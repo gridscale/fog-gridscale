@@ -5,9 +5,6 @@ module Fog
       class Real
 
         def load_balancer_update(load_balancer_uuid, payload)
-          # update_options = {
-          #     :name       => name,
-          # }
 
           encoded_body = Fog::JSON.encode(payload)
 

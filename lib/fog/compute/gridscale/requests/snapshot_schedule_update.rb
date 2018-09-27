@@ -5,14 +5,6 @@ module Fog
       class Real
 
         def snapshot_schedule_update(storage_uuid, snapshot_schedule_uuid, payload={})
-          # update_options = {
-          #     # :name       => name,
-          # }
-          #
-          #
-          # [:name, :capacity].each do |opt|
-          #   update_options[opt] = !!options[opt] if options[opt]
-          # end
 
           encoded_body = Fog::JSON.encode(payload)
 

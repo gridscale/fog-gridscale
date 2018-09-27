@@ -5,9 +5,6 @@ module Fog
       class Real
 
         def marketplace_template_update(marketplace_template_uuid, payload)
-          # update_options = {
-          #     :name       => name,
-          # }
 
           encoded_body = Fog::JSON.encode(payload)
 

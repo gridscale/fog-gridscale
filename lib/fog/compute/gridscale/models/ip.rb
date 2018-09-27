@@ -51,12 +51,7 @@ module Fog
 
         private
 
-        # Performs a droplet action with the given set of arguments.
-        # def perform_action(action, *args)
-        #   requires :id
-        #   response = service.send(action, id, *args)
-        #   response.body
-        # end
+
       end
     end
   end

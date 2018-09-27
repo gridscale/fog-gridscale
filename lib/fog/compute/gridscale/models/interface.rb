@@ -26,35 +26,17 @@ module Fog
         attribute :network_uuid
         attribute :mac
         attribute :bootable
+        attribute :server_uuid
 
-
-
-        def delete
-          requires :object_uuid
-          response = service.network_delete object_uuid
-          response.body
-        end
-
-        def save
-          raise Fog::Errors::Error.new('Re-saving an existing object may create a duplicate') if persisted?
-          requires :name, :location_uuid
-
-          payload = {}
-
-          data = service.network_create(payload)
-
-          merge_attributes(data)
-          true
-        end
-
-        def update
-          requires :object_uuid
-
-          payload = {}
-
-          data = service.network_update(object_uuid, payload)
-          merge_attributes(data.body)
-          true
+        def all(_filters = {})
+          requires :vm
+          if vm.is_a? Fog::Compute::Ovirt::Server
+            load service.list_vm_interfaces(vm.id)
+          elsif vm.is_a? Fog::Compute::Ovirt::Template
+            load service.list_template_interfaces(vm.id)
+          else
+            raise ::Fog::Ovirt::Errors::OvirtError, "interfaces should have vm or template"
+          end
         end
       end
     end

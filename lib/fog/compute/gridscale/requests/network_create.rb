@@ -5,11 +5,6 @@ module Fog
       class Real
         def network_create(payload)
 
-          # create_options = {
-          #     :name   => name,
-          #     :location_uuid => "45ed677b-3702-4b36-be2a-a2eab9827950",
-          #
-          # }
 
           encoded_body = Fog::JSON.encode(payload)
 

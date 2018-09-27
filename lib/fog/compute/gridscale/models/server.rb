@@ -37,7 +37,7 @@ module Fog
         attribute :network_uuid
         attribute :public_ips
         attribute :networks
-        attribute :sotrages
+        attribute :storages
         attribute :storage_uuid
         attribute :interfaces
         attribute :mac
@@ -58,33 +58,50 @@ module Fog
           end
         end
 
+        # def relations
+        #   interfaces_attributes = :interface_attributes
+        #   storage = :storage
+        #   relations = {
+        #       :isoimages => [],
+        #       :public_ips => [],
+        #   }
+        #
+        #   networks = []
+        #   storages = []
+        #   bootable_set = false
+        #   interfaces_attributes.each do |key, value|
+        #     if value["network_uuid"].present? && value["network_uuid"] != ""
+        #       if bootable_set == false && value["bootable"] == "1"
+        #         networks << {"network_uuid"=>value["network_uuid"], "bootdevice"=>true}
+        #         bootable_set = true
+        #       else
+        #         networks << {"network_uuid"=>value["network_uuid"]}
+        #       end
+        #     end
+        #   end
+        #   if storage.present? && storage > 0
+        #     storages << {"create"=>{"name"=>"#{name} Storage", "capacity"=>storage, "location_uuid"=>"45ed677b-3702-4b36-be2a-a2eab9827950","storage_type"=>"storage"}, "relation"=>{"bootdevice"=>true}}
+        #   end
+        #   relations[:networks] = networks
+        #   relations[:storages] = storages
+        #   relations
+        #
+        # end
+
         def save
           raise Fog::Errors::Error.new('Re-saving an existing object may create a duplicate') if persisted?
-          requires :name, :cores, :memory, :storage, :interfaces_attributes
-          relations = {
-            :isoimages => [],
-	          :public_ips => [],
-	          }
+          requires :name, :cores, :memory
 
-	        networks = []
-          storages = []
-	          bootable_set = false
-          interfaces_attributes.each do |key, value|
-            if value["network_uuid"].present? && value["network_uuid"] != ""
-              if bootable_set == false && value["bootable"] == "1"
-                networks << {"network_uuid"=>value["network_uuid"], "bootdevice"=>true}
-                bootable_set = true
-              else
-                networks << {"network_uuid"=>value["network_uuid"]}
-              end
-            end
+          options = {}
+          if attributes[:interfaces_attributes]
+            options[:interfaces_attributes] = attributes[:interfaces_attributes]
           end
-          if storage.present? && storage > 0
-            storages << {"create"=>{"name"=>"#{name} Storage", "capacity"=>storage, "location_uuid"=>"45ed677b-3702-4b36-be2a-a2eab9827950","storage_type"=>"storage"}, "relation"=>{"bootdevice"=>true}}
-          end 
-          relations[:networks] = networks
-          relations[:storages] = storages
-          data = service.server_create(name, cores, memory, relations)
+
+          if attributes[:storage]
+            options[:storage] = attributes[:storage]
+          end
+
+          data = service.server_create(name, cores, memory, options)
           merge_attributes(data.body)
           true
         end

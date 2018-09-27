@@ -3,7 +3,6 @@ module Fog
     class Gridscale
       class Real
         def storages_get(filters={})
-          # response        = Excon::Response.new
           request(
               :expects => [200],
               :method  => 'GET',

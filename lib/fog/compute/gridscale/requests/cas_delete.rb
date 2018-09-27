@@ -14,9 +14,6 @@ module Fog
               )
         end
       end
-
-      # noinspection RubyStringKeysInHashInspection
-
     end
   end
 end

@@ -5,9 +5,6 @@ module Fog
       class Real
 
         def network_update(network_uuid, payload)
-          # update_options = {
-          #     :name       => name,
-          # }
 
           encoded_body = Fog::JSON.encode(payload)
 
