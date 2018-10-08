@@ -31,15 +31,22 @@ module Fog
           response.body
         end
 
+        def destroy
+          requires :object_uuid
+          response = service.network_delete object_uuid
+          response.body
+        end
+
         def save
           raise Fog::Errors::Error.new('Re-saving an existing object may create a duplicate') if persisted?
-          requires :name, :location_uuid
+          requires :name
 
-          payload = {}
+          options = {}
+          options[:labels] = labels
 
-          data = service.network_create(payload)
+          data = service.network_create(name, options)
 
-          merge_attributes(data)
+          merge_attributes(data.body)
           true
         end
 

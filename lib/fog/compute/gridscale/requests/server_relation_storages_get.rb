@@ -3,6 +3,9 @@ module Fog
     class Gridscale
       class Real
         def server_relation_storages_get(server_uuid)
+
+          server_uuid = server_uuid[:server_uuid]
+
           request(
               :expects => [200],
               :method  => 'GET',

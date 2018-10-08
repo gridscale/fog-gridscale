@@ -19,6 +19,14 @@ module Fog
       collection :ips
       model :interface
       collection :interfaces
+      model :cas
+      collection :cass
+      model :loadbalancer
+      collection :loadbalancers
+      model :server_relation_storage
+      collection :server_relation_storages
+      model :server_relation_network
+      collection :server_relation_networks
 
 
 
@@ -44,27 +52,27 @@ module Fog
       request :server_power_on
       request :server_power_get
 
-      request :server_relation_ipaddrs_get
-      request :server_relation_ipaddr_get
-      request :server_relation_ipaddr_remove
-      request :server_relation_ipaddr_add
+      request :server_relation_ips_get
+      request :server_relation_ip_get
+      request :server_relation_ip_delete
+      request :server_relation_ip_create
 
       request :server_relation_storages_get
       request :server_relation_storage_get
-      request :server_relation_storage_remove
-      request :server_relation_storage_add
+      request :server_relation_storage_delete
+      request :server_relation_storage_create
       request :server_relation_storage_update
 
       request :server_relation_networks_get
       request :server_relation_network_get
-      request :server_relation_network_remove
-      request :server_relation_network_add
+      request :server_relation_network_delete
+      request :server_relation_network_create
       request :server_relation_network_update
 
       request :server_relation_isoimages_get
       request :server_relation_isoimage_get
-      request :server_relation_isoimage_remove
-      request :server_relation_isoimage_add
+      request :server_relation_isoimage_delete
+      request :server_relation_isoimage_create
       request :server_relation_isoimage_update
 
       request :server_events_get
@@ -86,8 +94,8 @@ module Fog
       request :ips_get
 
       #isoimage
-      request :isoimage_remove
-      request :isoimage_add
+      request :isoimage_delete
+      request :isoimage_create
       request :isoimage_get
       request :isoimage_events_get
       request :isoimages_get
@@ -103,14 +111,14 @@ module Fog
       request :cas_actions_get
 
       #snapshot
-      request :snapshot_add
+      request :snapshot_create
       request :snapshots_get
       request :snapshot_delete
       request :snapshot_get
       request :snapshot_update
 
       #snapshot_schedule
-      request :snapshot_schedule_add
+      request :snapshot_schedule_create
       request :snapshot_schedules_get
       request :snapshot_schedule_delete
       request :snapshot_schedule_get
@@ -119,7 +127,7 @@ module Fog
 
       #template
       request :template_delete
-      request :template_add
+      request :template_create
       request :template_get
       request :template_events_get
       request :templates_get

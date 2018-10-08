@@ -1,25 +1,21 @@
 module Fog
   module Compute
     class Gridscale
-      # noinspection RubyStringKeysInHashInspection
       class Real
-        def isoimage_add(name, source_url)
+        def server_relation_storage_create(server_uuid, storage_uuid)
 
           create_options = {
-              :name   => name,
-              :location_uuid => "45ed677b-3702-4b36-be2a-a2eab9827950",
-              :source_url   => source_url,
+              :object_uuid   => storage_uuid,
+
           }
-
           encoded_body = Fog::JSON.encode(create_options)
-
           request(
               :expects => [202],
               :headers => {
                   'Content-Type' => "application/json; charset=UTF-8",
               },
               :method  => 'POST',
-              :path    => '/objects/isoimages',
+              :path    => "/objects/servers/#{server_uuid}/storages",
               :body    => encoded_body,
               )
         end

@@ -1,0 +1,29 @@
+require 'fog/compute/gridscale/models/paging_collection'
+require 'fog/compute/gridscale/models/server_relation_network'
+
+module Fog
+  module Compute
+    class Gridscale
+      class ServerRelationNetworks < Fog::Compute::Gridscale::PagingCollection
+        model Fog::Compute::Gridscale::ServerRelationNetwork
+
+
+
+        def all(server_uuid)
+          # requires :server_uuid
+          data = service.server_relation_networks_get(server_uuid)
+          relations = data.body['network_relations']
+          load(relations)
+        end
+
+
+        def get(payload)
+          networks_relation = service.server_relation_network_get(payload).body['network_relation']
+          new(networks_relation) if networks_relation
+        rescue Fog::Errors::NotFound
+          nil
+        end
+      end
+    end
+  end
+end

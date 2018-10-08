@@ -13,7 +13,7 @@ module Fog
         attribute :current_price
         attribute :power
         attribute :status
-        attribute :cores
+        attribute :cores, :aliases => 'cpu'
         attribute :name
         attribute :storage
         attribute :interfaces_attributes
@@ -25,7 +25,7 @@ module Fog
         attribute :location_name
         attribute :legacy
         attribute :memory
-        attribute :object_uuid
+        attribute :object_uuid, :aliases => 'server_uuid'
         attribute :server_uuid
         attribute :create_time
         attribute :relations
@@ -41,52 +41,30 @@ module Fog
         attribute :storage_uuid
         attribute :interfaces
         attribute :mac
+        attribute :cpu
+
+        def cpu
+          cores
+        end
 
         def public_ip_address
           ipv4_address
         end
 
         def ipv4_address
+          # If we have syncronous response body from creating server, this value will be set in providedattributes function in foreman
           if (net = relations['public_ips'].find {|n|n['family']==4})
             net['ip']
           end
         end
 
         def ipv6_address
-          if (net = relations['public_ips'].find {|n|n['family']==6})
+          # If we have syncronous response body from creating server, this value will be set in providedattributes function in foreman
+        if (net = relations['public_ips'].find {|n|n['family']==6})
             net['ip']
           end
         end
 
-        # def relations
-        #   interfaces_attributes = :interface_attributes
-        #   storage = :storage
-        #   relations = {
-        #       :isoimages => [],
-        #       :public_ips => [],
-        #   }
-        #
-        #   networks = []
-        #   storages = []
-        #   bootable_set = false
-        #   interfaces_attributes.each do |key, value|
-        #     if value["network_uuid"].present? && value["network_uuid"] != ""
-        #       if bootable_set == false && value["bootable"] == "1"
-        #         networks << {"network_uuid"=>value["network_uuid"], "bootdevice"=>true}
-        #         bootable_set = true
-        #       else
-        #         networks << {"network_uuid"=>value["network_uuid"]}
-        #       end
-        #     end
-        #   end
-        #   if storage.present? && storage > 0
-        #     storages << {"create"=>{"name"=>"#{name} Storage", "capacity"=>storage, "location_uuid"=>"45ed677b-3702-4b36-be2a-a2eab9827950","storage_type"=>"storage"}, "relation"=>{"bootdevice"=>true}}
-        #   end
-        #   relations[:networks] = networks
-        #   relations[:storages] = storages
-        #   relations
-        #
-        # end
 
         def save
           raise Fog::Errors::Error.new('Re-saving an existing object may create a duplicate') if persisted?
@@ -101,6 +79,11 @@ module Fog
             options[:storage] = attributes[:storage]
           end
 
+          if attributes[:labels]
+            options[:labels] = attributes[:labels]
+          end
+
+
           data = service.server_create(name, cores, memory, options)
           merge_attributes(data.body)
           true
@@ -108,7 +91,7 @@ module Fog
 
         def delete
           requires :object_uuid
-          response = service.server_delete object_uuid
+          response = service.server_delete(object_uuid)
           response.body
         end
 

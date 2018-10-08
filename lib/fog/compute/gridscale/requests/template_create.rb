@@ -2,21 +2,18 @@ module Fog
   module Compute
     class Gridscale
       class Real
-        def server_relation_ipaddr_add(server_uuid, ip_uuid)
+        def template_create(payload)
 
-          create_options = {
-              :object_uuid   => ip_uuid,
 
-          }
 
-          encoded_body = Fog::JSON.encode(create_options)
+          encoded_body = Fog::JSON.encode(payload)
           request(
               :expects => [202],
               :headers => {
                   'Content-Type' => "application/json; charset=UTF-8",
               },
               :method  => 'POST',
-              :path    => "/objects/servers/#{server_uuid}/ips",
+              :path    => "/objects/templates",
               :body    => encoded_body,
               )
         end

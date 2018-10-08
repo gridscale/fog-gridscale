@@ -3,16 +3,10 @@ module Fog
     class Gridscale
       # noinspection RubyStringKeysInHashInspection
       class Real
-        def network_create(name, options={})
 
-          create_options = {
-              :name   => name,
-              :location_uuid => "45ed677b-3702-4b36-be2a-a2eab9827950",
-          }
+        def snapshot_schedule_create(storage_uuid, payload)
 
-          create_options[:labels] = options[:labels] || []
-
-          encoded_body = Fog::JSON.encode(create_options)
+          encoded_body = Fog::JSON.encode(payload)
 
           request(
               :expects => [202],
@@ -20,11 +14,12 @@ module Fog
                   'Content-Type' => "application/json; charset=UTF-8",
               },
               :method  => 'POST',
-              :path    => '/objects/networks',
+              :path    => "/objects/storages/#{storage_uuid}/snapshot_schedules",
               :body    => encoded_body,
               )
         end
       end
+      # noinspection RubyStringKeysInHashInspection
     end
   end
 end

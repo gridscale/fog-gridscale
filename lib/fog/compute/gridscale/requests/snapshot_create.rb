@@ -1,23 +1,25 @@
 module Fog
   module Compute
     class Gridscale
+      # noinspection RubyStringKeysInHashInspection
       class Real
-        def template_add(payload)
 
-
+        def snapshot_create(storage_uuid, payload)
 
           encoded_body = Fog::JSON.encode(payload)
+
           request(
               :expects => [202],
               :headers => {
                   'Content-Type' => "application/json; charset=UTF-8",
               },
               :method  => 'POST',
-              :path    => "/objects/templates",
+              :path    => "/objects/storages/#{storage_uuid}/snapshots",
               :body    => encoded_body,
               )
         end
       end
+      # noinspection RubyStringKeysInHashInspection
     end
   end
 end

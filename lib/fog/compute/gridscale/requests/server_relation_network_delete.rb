@@ -3,14 +3,20 @@ module Fog
     class Gridscale
       # noinspection RubyStringKeysInHashInspection
       class Real
-        def isoimage_remove(isoimage_uuid)
+        def server_relation_network_delete(object_uuid)
+          # pp server_uuid
+          # pp object_uuid
+
+          server_uuid = object_uuid[:server_uuid]
+          network_uuid = object_uuid[:network_uuid]
+
           request(
-              :expects         => [204],
+              :expects         => [202],
               :headers         => {
                   'Content-Type' => "application/json; charset=UTF-8",
               },
               :method          => 'DELETE',
-              :path            => "/objects/isoimages/#{isoimage_uuid}",
+              :path            => "/objects/servers/#{server_uuid}/networks/#{network_uuid}",
               )
         end
       end

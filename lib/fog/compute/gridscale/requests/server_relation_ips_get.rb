@@ -2,11 +2,11 @@ module Fog
   module Compute
     class Gridscale
       class Real
-        def server_relation_ipaddr_get(server_uuid, ip_uuid)
+        def server_relation_ips_get(server_uuid)
           request(
               :expects => [200],
               :method  => 'GET',
-              :path    => "/objects/servers/#{server_uuid}/ips/#{ip_uuid}"
+              :path    => "/objects/servers/#{server_uuid}/ips"
           )
         end
       end

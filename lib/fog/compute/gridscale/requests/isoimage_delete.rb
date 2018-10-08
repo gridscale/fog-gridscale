@@ -3,14 +3,14 @@ module Fog
     class Gridscale
       # noinspection RubyStringKeysInHashInspection
       class Real
-        def server_relation_ipaddr_remove(server_uuid, ip_uuid)
+        def isoimage_delete(isoimage_uuid)
           request(
-              :expects         => [202],
+              :expects         => [204],
               :headers         => {
                   'Content-Type' => "application/json; charset=UTF-8",
               },
               :method          => 'DELETE',
-              :path            => "/objects/servers/#{server_uuid}/ips/#{ip_uuid}",
+              :path            => "/objects/isoimages/#{isoimage_uuid}",
               )
         end
       end

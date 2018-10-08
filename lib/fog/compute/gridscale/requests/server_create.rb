@@ -19,7 +19,7 @@ module Fog
           bootable_set = false
           if interfaces_attributes != nil
             interfaces_attributes.each do |key, value|
-              if value["network_uuid"].present? && value["network_uuid"] != ""
+              if value["network_uuid"] !=nil && value["network_uuid"] != ""
                 if bootable_set == false && value["bootable"] == "1"
                   networks << {"network_uuid"=>value["network_uuid"], "bootdevice"=>true}
                   bootable_set = true
@@ -36,6 +36,8 @@ module Fog
           relations[:networks] = networks
           relations[:storages] = storages
 
+
+
           create_options = {
               :name   => name,
               :location_uuid => "45ed677b-3702-4b36-be2a-a2eab9827950",
@@ -44,8 +46,12 @@ module Fog
               :relations => relations,
           }
 
-          encoded_body = Fog::JSON.encode(create_options)
+          if options[:labels]
+            create_options[:labels] = options[:labels]
+          end
 
+          encoded_body = Fog::JSON.encode(create_options)
+          print(create_options)
           request(
               :expects => [202],
               :headers => {
