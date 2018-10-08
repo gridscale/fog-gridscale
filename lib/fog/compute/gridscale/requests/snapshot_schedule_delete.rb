@@ -3,7 +3,11 @@ module Fog
     class Gridscale
       # noinspection RubyStringKeysInHashInspection
       class Real
-        def snapshot_schedule_delete(storage_uuid, snapshot_schedule_uuid)
+        def snapshot_schedule_delete(object_uuid)
+
+          storage_uuid = object_uuid[:storage_uuid]
+          snapshot_schedule_uuid = object_uuid[:snapshot_schedule_uuid]
+
           request(
               :expects         => [204],
               :headers         => {

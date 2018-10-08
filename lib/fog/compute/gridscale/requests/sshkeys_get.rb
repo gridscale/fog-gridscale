@@ -2,13 +2,13 @@ module Fog
   module Compute
     class Gridscale
       class Real
-        def snapshot_schedules_get(storage_uuid)
-          storage_uuid = storage_uuid[:storage_uuid]
-
+        def sshkeys_get(filters={})
           request(
               :expects => [200],
               :method  => 'GET',
-              :path    => "/objects/storages/#{storage_uuid}/snapshot_schedules/"
+              :path    => "/objects/sshkeys",
+              :query  => filters
+
           )
         end
       end

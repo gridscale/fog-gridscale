@@ -3,6 +3,7 @@ module Fog
     class Gridscale
       class Real
         def snapshots_get(storage_uuid)
+          storage_uuid = storage_uuid[:storage_uuid]
           request(
               :expects => [200],
               :method  => 'GET',

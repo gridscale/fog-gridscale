@@ -29,9 +29,14 @@ module Fog
       collection :server_relation_networks
       model :server_relation_ip
       collection :server_relation_ips
-      model :server_relation_isoimage
-      collection :server_relation_isoimages
-
+      # model :server_relation_isoimage
+      # collection :server_relation_isoimages
+      model :sshkey
+      collection :sshkeys
+      model :snapshot
+      collection :snapshots
+      model :snapshot_schedule
+      collection :snapshot_schedules
 
 
 
@@ -182,6 +187,11 @@ module Fog
       request :buckets_get
       request :bucket_get
 
+      #sshkey
+      request :sshkey_create
+      request :sshkey_get
+      request :sshkeys_get
+      request :sshkey_delete
 
       class Mock
         def self.data

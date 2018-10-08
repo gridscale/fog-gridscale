@@ -3,13 +3,14 @@ module Fog
     class Gridscale
       # noinspection RubyStringKeysInHashInspection
       class Real
+        def sshkey_create(name, sshkey)
 
-        def snapshot_create(storage_uuid, name)
-          payload = {
-              :name => name
+          create_options = {
+              :name   => name,
+              :sshkey => sshkey,
           }
 
-          encoded_body = Fog::JSON.encode(payload)
+          encoded_body = Fog::JSON.encode(create_options)
 
           request(
               :expects => [202],
@@ -17,12 +18,11 @@ module Fog
                   'Content-Type' => "application/json; charset=UTF-8",
               },
               :method  => 'POST',
-              :path    => "/objects/storages/#{storage_uuid}/snapshots",
+              :path    => '/objects/sshkeys',
               :body    => encoded_body,
               )
         end
       end
-      # noinspection RubyStringKeysInHashInspection
     end
   end
 end
