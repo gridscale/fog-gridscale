@@ -1,51 +1,51 @@
-require 'fog/compute/gridscale/models/ip'
+require 'fog/compute/gridscale/models/isoimage'
 
 module Fog
   module Compute
     class Gridscale
-      class ServerRelationIp < Fog::Model
+      class ServerRelationIsoimage < Fog::Model
         identity :object_uuid
 
+        attribute :bootdevice
         attribute :create_time
-        attribute :family
-        attribute :ip
+        attribute :object_name
         attribute :object_uuid
-        attribute :prefix
+        attribute :private
         attribute :server_uuid
-        attribute :ip_uuid
+        attribute :isoimage_uuid
 
 
         def save
           raise Fog::Errors::Error.new('Re-saving an existing object may create a duplicate') if persisted?
-          requires :server_uuid, :ip_uuid
+          requires :server_uuid, :isoimage_uuid
 
           # payload = {}
           # payload[:object_uuid ] = attributes[:object_uuid]
 
           pp :server_uuid
 
-          service.server_relation_ip_create(server_uuid, ip_uuid)
+          service.server_relation_isoimage_create(server_uuid, isoimage_uuid)
 
         end
 
         def delete
           object_uuid = {}
           object_uuid[:server_uuid] = attributes[:server_uuid]
-          object_uuid[:ip_uuid] = attributes[:ip_uuid]
-          service.server_relation_ip_delete(server_uuid, ip_uuid)
+          object_uuid[:isoimage_uuid] = attributes[:isoimage_uuid]
+          service.server_relation_isoimage_delete(server_uuid, isoimage_uuid)
         end
 
         def destroy
-          # requires :server_uuid, :ip_uuid
+          # requires :server_uuid, :isoimage_uuid
           # payload={}
           # payload[:server_uuid] = attributes[:server_uuid]
-          # payload[:ip_uuid] = attributes[:ip_uuid]
+          # payload[:isoimage_uuid] = attributes[:isoimage_uuid]
           #
           # pp :server_uuid
           # pp :object_uuid
           # pp "hooooooo"
 
-          response = service.server_relation_ip_delete(object_uuid)
+          response = service.server_relation_isoimage_delete(object_uuid)
           response.body
 
         end

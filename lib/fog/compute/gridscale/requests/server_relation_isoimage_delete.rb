@@ -3,7 +3,9 @@ module Fog
     class Gridscale
       # noinspection RubyStringKeysInHashInspection
       class Real
-        def server_relation_isoimage_delete(server_uuid, isoimage_uuid)
+        def server_relation_isoimage_delete(object_uuid)
+          server_uuid = object_uuid[:server_uuid]
+          isoimage_uuid = object_uuid[:isoimage_uuid]
           request(
               :expects         => [202],
               :headers         => {

@@ -1,8 +1,6 @@
 # Fog::Gridscale
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/fog/gridscale`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This is the plugin Gem to talk to [gridscale](https://my.gridscale.io/) clouds via fog.
 
 ## Installation
 
@@ -22,14 +20,67 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### Initial Setup
 
-## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+# Getting started: the compute service
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+You'll need a gridscale account, user uuid and an API token to use this provider.
 
-## Contributing
+Get one from https://my.gridscale.io/APIs/
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/fog-gridscale.
+Write down the Access Token.
+
+## Connecting, retrieving and managing server objects
+
+.
+
+First, create a connection to the host:
+
+```ruby
+require 'fog/gridscale'
+require 'pp'
+gridscale = Fog::Compute.new({
+                              :provider => 'gridscale',
+                              :api_token =>  'your token',
+                              :user_uuid => 'your user uuid',
+
+                          })
+```
+
+
+## Listing servers
+
+Listing servers and attributes:
+
+```ruby
+gridscale.servers.each do |server|
+  puts server.object_uuid
+  puts server.name
+  puts server.cores
+  puts server.memory
+end
+```
+
+## Server creation
+
+Creating a new server (droplet):
+
+```ruby
+server = gridscale.servers.create :name => 'foobar',
+                               :cores  => 2,
+                               :memory => 4,
+                               
+```
+
+## Get a server
+```ruby
+gridscale.servers.get('server_uuid')
+```
+
+## Delete a server
+```ruby
+gridscale.servers.delete('server_uuid')
+```
+
+

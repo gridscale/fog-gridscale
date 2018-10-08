@@ -27,6 +27,11 @@ module Fog
       collection :server_relation_storages
       model :server_relation_network
       collection :server_relation_networks
+      model :server_relation_ip
+      collection :server_relation_ips
+      model :server_relation_isoimage
+      collection :server_relation_isoimages
+
 
 
 

@@ -3,7 +3,9 @@ module Fog
     class Gridscale
       # noinspection RubyStringKeysInHashInspection
       class Real
-        def server_relation_ip_delete(server_uuid, ip_uuid)
+        def server_relation_ip_delete(object_uuid)
+          server_uuid = object_uuid[:server_uuid]
+          ip_uuid = object_uuid[:ip_uuid]
           request(
               :expects         => [202],
               :headers         => {
