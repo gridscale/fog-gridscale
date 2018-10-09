@@ -1,7 +1,6 @@
 module Fog
   module Compute
     class Gridscale
-      # noinspection RubyStringKeysInHashInspection
       class Real
         def server_delete(server_uuid)
           request(
@@ -14,9 +13,6 @@ module Fog
               )
         end
       end
-
-      # noinspection RubyStringKeysInHashInspection
-
     end
   end
 end

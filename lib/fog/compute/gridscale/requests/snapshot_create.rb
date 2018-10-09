@@ -1,7 +1,6 @@
 module Fog
   module Compute
     class Gridscale
-      # noinspection RubyStringKeysInHashInspection
       class Real
 
         def snapshot_create(storage_uuid, name)
@@ -22,7 +21,6 @@ module Fog
               )
         end
       end
-      # noinspection RubyStringKeysInHashInspection
     end
   end
 end

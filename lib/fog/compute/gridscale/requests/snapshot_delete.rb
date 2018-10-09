@@ -1,7 +1,6 @@
 module Fog
   module Compute
     class Gridscale
-      # noinspection RubyStringKeysInHashInspection
       class Real
         def snapshot_delete(object_uuid)
 
@@ -18,9 +17,6 @@ module Fog
               )
         end
       end
-
-      # noinspection RubyStringKeysInHashInspection
-
     end
   end
 end

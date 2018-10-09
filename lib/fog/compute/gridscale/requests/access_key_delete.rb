@@ -1,7 +1,6 @@
 module Fog
   module Compute
     class Gridscale
-      # noinspection RubyStringKeysInHashInspection
       class Real
         def access_key_delete(access_key)
           pp access_key

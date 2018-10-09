@@ -1,7 +1,6 @@
 module Fog
   module Compute
     class Gridscale
-      # noinspection RubyStringKeysInHashInspection
       class Real
         def network_create(name, options={})
 

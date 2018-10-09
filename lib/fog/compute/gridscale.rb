@@ -47,7 +47,24 @@ module Fog
       collection :access_keys
       model :bucket
       collection :buckets
-
+      model :firewall
+      collection :firewalls
+      model :deleted_ip
+      collection :deleted_ips
+      model :deleted_network
+      collection :deleted_networks
+      model :deleted_server
+      collection :deleted_servers
+      model :deleted_storage
+      collection :deleted_storages
+      model :deleted_isoimage
+      collection :deleted_isoimages
+      # model :deleted_snapshot
+      # collection :deleted_snapshots
+      model :deleted_template
+      collection :deleted_templates
+      model :isoimage
+      collection :isoimages
 
       request_path 'fog/compute/gridscale/requests'
 

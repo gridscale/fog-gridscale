@@ -45,14 +45,6 @@ module Fog
         end
 
         def destroy
-          # requires :server_uuid, :ip_uuid
-          # payload={}
-          # payload[:server_uuid] = attributes[:server_uuid]
-          # payload[:ip_uuid] = attributes[:ip_uuid]
-          #
-          # pp :server_uuid
-          # pp :object_uuid
-          # pp "hooooooo"
 
           response = service.snapshot_delete(object_uuid)
           response.body

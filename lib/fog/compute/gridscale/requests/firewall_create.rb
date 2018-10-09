@@ -1,11 +1,15 @@
 module Fog
   module Compute
     class Gridscale
-      # noinspection RubyStringKeysInHashInspection
       class Real
-        def firewall_create(payload)
+        def firewall_create(name, rules)
 
-          encoded_body = Fog::JSON.encode(payload)
+          create_payload ={
+              :name => name,
+              :rules => rules
+          }
+
+          encoded_body = Fog::JSON.encode(create_payload)
 
           request(
               :expects => [202],

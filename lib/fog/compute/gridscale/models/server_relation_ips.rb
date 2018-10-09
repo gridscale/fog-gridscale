@@ -10,7 +10,6 @@ module Fog
 
 
         def all(server_uuid)
-          # requires :server_uuid
           data = service.server_relation_ips_get(server_uuid)
           relations = data.body['ip_relations']
           load(relations)

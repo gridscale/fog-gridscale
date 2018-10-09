@@ -1,7 +1,6 @@
 module Fog
   module Compute
     class Gridscale
-      # noinspection RubyStringKeysInHashInspection
       class Real
 
         def marketplace_template_update(marketplace_template_uuid, payload)
@@ -19,7 +18,6 @@ module Fog
               )
         end
       end
-      # noinspection RubyStringKeysInHashInspection
     end
   end
 end

@@ -1,7 +1,6 @@
 module Fog
   module Compute
     class Gridscale
-      # noinspection RubyStringKeysInHashInspection
       class Real
 
         def storage_update(storage_uuid, payload={})
@@ -20,7 +19,6 @@ module Fog
               )
         end
       end
-      # noinspection RubyStringKeysInHashInspection
     end
   end
 end

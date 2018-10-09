@@ -1,7 +1,6 @@
 module Fog
   module Compute
     class Gridscale
-      # noinspection RubyStringKeysInHashInspection
       class Real
         def server_relation_storage_delete(object_uuid)
           # pp server_uuid
@@ -20,9 +19,6 @@ module Fog
               )
         end
       end
-
-      # noinspection RubyStringKeysInHashInspection
-
     end
   end
 end

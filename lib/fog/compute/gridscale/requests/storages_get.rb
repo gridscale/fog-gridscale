@@ -9,7 +9,6 @@ module Fog
               :path    => "/objects/storages",
               :query   => filters
           )
-          # return response.body
         end
       end
     end

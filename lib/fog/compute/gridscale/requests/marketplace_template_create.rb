@@ -1,7 +1,6 @@
 module Fog
   module Compute
     class Gridscale
-      # noinspection RubyStringKeysInHashInspection
       class Real
         def marketplace_template_create(payload)
           encoded_body = Fog::JSON.encode(payload)

@@ -25,13 +25,6 @@ module Fog
           raise Fog::Errors::Error.new('Re-saving an existing object may create a duplicate') if persisted?
           requires :name, :action_payload,:filters, :event_type, :action_type
 
-          # options = {}
-          # options[:name] = attributes[:name]
-          # options[:action_payload] = attributes[:action_payload]
-          # options[:filters] = attributes[:event_type]
-          # options[:action_type] = attributes[:action_type]
-          # options[:event_type] = attributes[:event_type]
-
           data = service.cas_create(name, action_payload,filters, event_type, action_type)
           merge_attributes(data.body)
           true
