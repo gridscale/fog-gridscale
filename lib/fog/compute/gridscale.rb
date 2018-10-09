@@ -37,7 +37,16 @@ module Fog
       collection :snapshots
       model :snapshot_schedule
       collection :snapshot_schedules
-
+      model :template
+      collection :templates
+      model :location
+      collection :locations
+      model :request
+      collection :requests
+      model :access_key
+      collection :access_keys
+      model :bucket
+      collection :buckets
 
 
       request_path 'fog/compute/gridscale/requests'
@@ -192,6 +201,10 @@ module Fog
       request :sshkey_get
       request :sshkeys_get
       request :sshkey_delete
+
+      #location
+      request :location_get
+      request :locations_get
 
       class Mock
         def self.data

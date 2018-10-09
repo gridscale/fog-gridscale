@@ -37,7 +37,7 @@ module Fog
           true
         end
 
-        def delete
+        def destroy
           requires :object_uuid
           response = service.cas_delete object_uuid
           response.body

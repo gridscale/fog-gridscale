@@ -2,11 +2,17 @@ module Fog
   module Compute
     class Gridscale
       class Real
-        def template_create(payload)
+        def template_create(name, snapshot_uuid, options={})
 
+          create_options = {
+              :name   => name,
+              :snapshot_uuid => snapshot_uuid,
+          }
 
+          create_options[:labels] = options[:labels] || []
 
-          encoded_body = Fog::JSON.encode(payload)
+          encoded_body = Fog::JSON.encode(create_options)
+
           request(
               :expects => [202],
               :headers => {

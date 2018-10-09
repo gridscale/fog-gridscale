@@ -2,16 +2,13 @@ module Fog
   module Compute
     class Gridscale
       class Real
-        def templates_get(filters={})
-          # response        = Excon::Response.new
+        def locations_get(filters={})
           request(
               :expects => [200],
               :method  => 'GET',
-              :path    => "/objects/templates",
+              :path    => "/objects/locations",
               :query   => filters
-
           )
-          # return response.body
         end
       end
     end

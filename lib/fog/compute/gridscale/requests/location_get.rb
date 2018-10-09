@@ -2,15 +2,14 @@ module Fog
   module Compute
     class Gridscale
       class Real
-        def bucket_get(name)
+        def location_get(location_uuid)
           request(
               :expects => [200],
               :method  => 'GET',
-              :path    => "objects/objectstorages/buckets/#{name}"
+              :path    => "/objects/locations/#{location_uuid}"
           )
         end
       end
     end
   end
 end
-

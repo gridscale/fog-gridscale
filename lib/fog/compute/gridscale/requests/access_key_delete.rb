@@ -4,6 +4,7 @@ module Fog
       # noinspection RubyStringKeysInHashInspection
       class Real
         def access_key_delete(access_key)
+          pp access_key
           request(
               :expects         => [204],
               :headers         => {
