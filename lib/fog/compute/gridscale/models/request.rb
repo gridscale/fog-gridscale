@@ -6,6 +6,7 @@ module Fog
       class Request < Fog::Model
         identity :object_uuid
 
+
         attribute :create_time
         attribute :message
         attribute :status
