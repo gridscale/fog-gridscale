@@ -66,6 +66,10 @@ module Fog
       collection :deleted_templates
       model :isoimage
       collection :isoimages
+      model :paas_service
+      collection :paas_services
+      model :paas_security_zone
+      collection :paas_security_zones
 
       request_path 'fog/compute/gridscale/requests'
 
@@ -225,6 +229,20 @@ module Fog
       #location
       request :location_get
       request :locations_get
+
+      #paas service
+      request :paas_service_create
+      request :paas_service_get
+      request :paas_services_get
+      request :paas_service_delete
+      request :paas_service_update
+
+      #paas security zone
+      request :paas_security_zone_create
+      request :paas_security_zone_get
+      request :paas_security_zones_get
+      request :paas_security_zone_delete
+      request :paas_security_zone_update
 
       class Mock
         def self.data
