@@ -30,9 +30,12 @@ module Fog
           raise Fog::Errors::Error.new('Re-saving an existing object may create a duplicate') if persisted?
           requires :server_uuid, :network_uuid
 
-          pp :server_uuid
+          options = {}
+          if attributes[:bootdevice]
+            options[:bootdevice] = bootdevice
+          end
 
-          service.server_relation_network_create(server_uuid, network_uuid)
+          service.server_relation_network_create(server_uuid, network_uuid, options)
 
         end
 

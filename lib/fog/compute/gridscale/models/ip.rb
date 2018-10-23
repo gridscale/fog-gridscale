@@ -30,8 +30,27 @@ module Fog
           raise Fog::Errors::Error.new('Re-saving an existing object may create a duplicate') if persisted?
           requires :family
 
+          options = {}
+          if attributes[:labels]
+            options[:labels] = labels
+          end
 
-          data = service.ip_create(family)
+          if attributes[:failover]
+            options[:failover] = failover
+          end
+
+          if attributes[:name]
+            options[:name] = name
+          end
+
+          if attributes[:reverse_dns]
+            options[:reverse_dns] = reverse_dns
+          end
+
+          if attributes[:location_uuid]
+            options[:location_uuid] = location_uuid
+          end
+          data = service.ip_create(family, options)
 
           merge_attributes(data.body)
           true

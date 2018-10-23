@@ -18,14 +18,25 @@ module Fog
         attribute :change_time
         attribute :create_time
         attribute :object_uuid
+        attribute :location_uuid
 
 
 
         def save
           raise Fog::Errors::Error.new('Re-saving an existing object may create a duplicate') if persisted?
-          requires :name, :action_payload,:filters, :event_type, :action_type
+          requires :name, :action_payload,:filters, :event_type, :action_type, :labels
 
-          data = service.cas_create(name, action_payload,filters, event_type, action_type)
+          options ={}
+
+          if attributes[:labels]
+            options[:labels] = labels
+          end
+
+          if attributes[:location_uuid]
+            options[:location_uuid] = labels
+          end
+
+          data = service.cas_create(name, action_payload,filters, event_type, action_type, options)
           merge_attributes(data.body)
           true
         end

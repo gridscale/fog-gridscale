@@ -2,14 +2,14 @@ module Fog
   module Compute
     class Gridscale
       class Real
-        def server_relation_storage_update(server_uuid, storage_uuid, options = {})
+        def server_relation_storage_update(server_uuid, storage_uuid, options)
 
-          create_options = {
+          # create_options = {
+          #
+          # }
+          # create_options[:bootdevice] = options[:bootdevice]
 
-          }
-          create_options[:bootdevice] = options[:bootdevice]
-
-          encoded_body = Fog::JSON.encode(create_options)
+          encoded_body = Fog::JSON.encode(options)
           request(
               :expects => [202],
               :headers => {

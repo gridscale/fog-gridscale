@@ -28,16 +28,29 @@ module Fog
 
 
 
-        # def save
-        #   raise Fog::Errors::Error.new('Re-saving an existing object may create a duplicate') if persisted?
-        #   requires :family
-        #
-        #
-        #   data = service.ip_create(family)
-        #
-        #   merge_attributes(data.body)
-        #   true
-        # end
+        def save
+          raise Fog::Errors::Error.new('Re-saving an existing object may create a duplicate') if persisted?
+          requires :name, :algorithm, :listen_ipv4_uuid, :listen_ipv6_uuid, :backend_servers, :forwarding_rules, :redirect_http_to_https
+
+          options = {}
+
+          if attributes[:labels]
+            options[:labels] = labels
+          end
+
+          if attributes[:storage_type]
+            options[:storage_type] = storage_type
+          end
+
+          if attributes[:location_uuid]
+            options[:location_uuid] = location_uuid
+          end
+
+          data = service.ip_create(family)
+
+          merge_attributes(data.body)
+          true
+        end
 
         def delete
           requires :object_uuid

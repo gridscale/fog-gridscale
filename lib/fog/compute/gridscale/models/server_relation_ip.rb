@@ -13,16 +13,19 @@ module Fog
         attribute :prefix
         attribute :server_uuid
         attribute :ip_uuid
+        attribute :bootdevice
 
 
         def save
           raise Fog::Errors::Error.new('Re-saving an existing object may create a duplicate') if persisted?
           requires :server_uuid, :ip_uuid
 
+          options = {}
+          if attributes[:bootdevice]
+            options[:bootdevice] = bootdevice
+          end
 
-          pp :server_uuid
-
-          service.server_relation_ip_create(server_uuid, ip_uuid)
+          service.server_relation_ip_create(server_uuid, ip_uuid, options)
 
         end
 

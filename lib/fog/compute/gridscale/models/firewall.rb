@@ -20,6 +20,12 @@ module Fog
         def save
           raise Fog::Errors::Error.new('Re-saving an existing object may create a duplicate') if persisted?
           requires :name, :rules
+          options = {}
+
+
+          if attributes[:labels]
+            options[:labels] = labels
+          end
 
           # options = {}
           # options[:name] = attributes[:name]
@@ -28,7 +34,7 @@ module Fog
           # options[:action_type] = attributes[:action_type]
           # options[:event_type] = attributes[:event_type]
 
-          data = service.firewall_create(name, rules)
+          data = service.firewall_create(name, rules, options)
           merge_attributes(data.body)
           true
         end

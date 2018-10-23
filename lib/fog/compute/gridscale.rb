@@ -7,6 +7,7 @@ module Fog
       autoload :PagingCollection, File.expand_path('../gridscale/models/paging_collection', __FILE__)
 
       requires :api_token , :user_uuid
+      # attributes :host
 
       model_path 'fog/compute/gridscale/models'
       model :storage
@@ -29,8 +30,8 @@ module Fog
       collection :server_relation_networks
       model :server_relation_ip
       collection :server_relation_ips
-      # model :server_relation_isoimage
-      # collection :server_relation_isoimages
+      model :server_relation_isoimage
+      collection :server_relation_isoimages
       model :sshkey
       collection :sshkeys
       model :snapshot
@@ -128,6 +129,7 @@ module Fog
       request :ip_get
       request :ip_events_get
       request :ips_get
+      request :ip_update
 
       #isoimage
       request :isoimage_delete
@@ -218,6 +220,7 @@ module Fog
       request :sshkey_get
       request :sshkeys_get
       request :sshkey_delete
+      request :sshkey_update
 
       #location
       request :location_get
@@ -254,6 +257,7 @@ module Fog
         def initialize(options={})
           api_token = options[:api_token]
           user_uuid = options[:user_uuid]
+          host = options[:host]
 
           persistent         = false
 
@@ -263,7 +267,12 @@ module Fog
                   'X-Auth-Token' => "#{api_token}",
               }
           }
-          @connection        = Fog::Core::Connection.new 'https://api.gridscale.io', persistent, options
+          if host
+            @connection = Fog::Core::Connection.new host, persistent, options
+          else
+            @connection        = Fog::Core::Connection.new 'https://apidev.gridscale.io', persistent, options
+          end
+
         end
 
         def request(params)
@@ -273,7 +282,7 @@ module Fog
           rescue Excon::Errors::HTTPStatusError => error
             raise case error
                   when Excon::Errors::NotFound
-                    NotFound.slurp(error)
+                    NotFound.slurp(error).to_s
                   else
                     error
                   end

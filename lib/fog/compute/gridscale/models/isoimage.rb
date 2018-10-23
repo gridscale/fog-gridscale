@@ -45,6 +45,9 @@ module Fog
 
           options = {}
           options[:labels] = labels
+          if attributes[:location_uuid]
+            options[:location_uuid] = location_uuid
+          end
 
           data = service.isoimage_create(name, source_url, options)
 

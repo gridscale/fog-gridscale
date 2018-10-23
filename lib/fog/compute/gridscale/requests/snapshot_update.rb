@@ -3,7 +3,7 @@ module Fog
     class Gridscale
       class Real
 
-        def snapshot_update(storage_uuid, snapshot_uuid, payload={})
+        def snapshot_update(storage_uuid, snapshot_uuid, payload)
 
           encoded_body = Fog::JSON.encode(payload)
 

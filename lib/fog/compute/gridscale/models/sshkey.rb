@@ -21,8 +21,13 @@ module Fog
           raise Fog::Errors::Error.new('Re-saving an existing object may create a duplicate') if persisted?
           requires :name, :sshkey
 
+          options = {}
 
-          data = service.sshkey_create(name, sshkey)
+          if attributes[:labels]
+            options[:labels] = labels
+          end
+
+          data = service.sshkey_create(name, sshkey, options)
 
           merge_attributes(data.body)
           true

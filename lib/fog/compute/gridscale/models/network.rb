@@ -42,7 +42,17 @@ module Fog
           requires :name
 
           options = {}
-          options[:labels] = labels
+          if attributes[:labels]
+            options[:labels] = labels
+          end
+
+          if attributes[:l2security]
+            options[:l2security] = l2security
+          end
+
+          if attributes[:location_uuid]
+            options[:location_uuid] = location_uuid
+          end
 
           data = service.network_create(name, options)
 

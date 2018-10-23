@@ -2,20 +2,17 @@ module Fog
   module Compute
     class Gridscale
       class Real
-
-        def snapshot_schedule_update(storage_uuid, snapshot_schedule_uuid, payload)
-
+        def sshkey_update(sshkey_uuid, payload)
           encoded_body = Fog::JSON.encode(payload)
-
-
           request(
-              :expects => [204],
-              :headers => {
+              :expects         => [204],
+              :headers         => {
                   'Content-Type' => "application/json; charset=UTF-8",
               },
-              :method  => 'PATCH',
-              :path    => "/objects/storages/#{storage_uuid}/snapshot_schedules/#{snapshot_schedule_uuid}",
+              :method          => 'PATCH',
+              :path            => "/objects/sshkeys/#{sshkey_uuid}",
               :body    => encoded_body,
+
               )
         end
       end

@@ -3,13 +3,15 @@ module Fog
     class Gridscale
       class Real
 
-        def snapshot_schedule_create(storage_uuid, name, run_interval, keep_snapshots)
-          payload = {
+        def snapshot_schedule_create(storage_uuid, name, run_interval, keep_snapshots, options = {})
+          create_options = {
               :name => name,
               :run_interval => run_interval,
               :keep_snapshots => keep_snapshots
           }
-          encoded_body = Fog::JSON.encode(payload)
+          create_options[:labels] = options[:labels] || []
+
+          encoded_body = Fog::JSON.encode(create_options)
 
           request(
               :expects => [202],

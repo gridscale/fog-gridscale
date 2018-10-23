@@ -42,6 +42,7 @@ module Fog
         attribute :interfaces
         attribute :mac
         attribute :cpu
+        attribute :request_uuid
 
         def cpu
           cores
@@ -81,6 +82,22 @@ module Fog
 
           if attributes[:labels]
             options[:labels] = attributes[:labels]
+          end
+
+          if attributes[:auto_recovery]
+            options[:auto_recovery] = auto_recovery
+          end
+
+          if attributes[:hardware_profile]
+            options[:hardware_profile] = hardware_profile
+          end
+
+          if attributes[:availability_zone]
+            options[:availability_zone] = availability_zone
+          end
+
+          if attributes[:location_uuid]
+            options[:location_uuid] = location_uuid
           end
 
 

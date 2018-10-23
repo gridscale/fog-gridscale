@@ -2,12 +2,15 @@ module Fog
   module Compute
     class Gridscale
       class Real
-        def server_relation_network_create(server_uuid, network_uuid)
+        def server_relation_network_create(server_uuid, network_uuid, options = {})
 
           create_options = {
               :object_uuid   => network_uuid,
 
           }
+          if options[:bootdevice]
+            create_options[:bootdevice] = options[:bootdevice]
+          end
 
           encoded_body = Fog::JSON.encode(create_options)
           request(

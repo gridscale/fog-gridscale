@@ -31,8 +31,15 @@ module Fog
           raise Fog::Errors::Error.new('Re-saving an existing object may create a duplicate') if persisted?
           requires :storage_uuid , :name
 
+          options = {}
+          if attributes[:labels]
+            options[:labels] = labels
+          end
 
-          data = service.snapshot_create(storage_uuid, name)
+
+          data = service.snapshot_create(storage_uuid, name, options)
+
+
 
           merge_attributes(data.body)
           true

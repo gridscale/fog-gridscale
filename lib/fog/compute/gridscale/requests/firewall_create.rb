@@ -2,14 +2,16 @@ module Fog
   module Compute
     class Gridscale
       class Real
-        def firewall_create(name, rules)
+        def firewall_create(name, rules, options ={})
 
-          create_payload ={
+          create_options ={
               :name => name,
               :rules => rules
           }
 
-          encoded_body = Fog::JSON.encode(create_payload)
+          create_options[:labels] = options[:labels] || []
+
+          encoded_body = Fog::JSON.encode(create_options)
 
           request(
               :expects => [202],

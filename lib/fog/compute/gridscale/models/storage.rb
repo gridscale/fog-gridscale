@@ -22,6 +22,8 @@ module Fog
         attribute :location_country
         attribute :location_iata
         attribute :relations
+        attribute :template
+        attribute :template_uuid
 
 
 
@@ -42,8 +44,22 @@ module Fog
           requires :name, :capacity
 
           options = {}
-          options[:labels] = labels
 
+          if attributes[:template]
+            options[:template] = template
+          end
+
+          if attributes[:labels]
+            options[:labels] = labels
+          end
+
+          if attributes[:storage_type]
+            options[:storage_type] = storage_type
+          end
+
+          if attributes[:location_uuid]
+            options[:location_uuid] = location_uuid
+          end
 
           data = service.storage_create(name, capacity, options)
 
