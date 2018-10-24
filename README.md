@@ -64,7 +64,7 @@ end
 
 ## Server creation
 
-Creating a new server (droplet):
+Creating a new server:
 
 ```ruby
 server = gridscale.servers.create :name => 'foobar',
@@ -75,12 +75,13 @@ server = gridscale.servers.create :name => 'foobar',
 
 ## Get a server
 ```ruby
-gridscale.servers.get('server_uuid')
+gridscale.servers.get(server_uuid)
 ```
 
-## Delete a server
+## Update a server
 ```ruby
-gridscale.servers.delete('server_uuid')
+gridscale.server_update(server_uuid, payload)
+
 ```
 
 
