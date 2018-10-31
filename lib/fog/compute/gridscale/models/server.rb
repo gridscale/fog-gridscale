@@ -25,7 +25,7 @@ module Fog
         attribute :location_name
         attribute :legacy
         attribute :memory
-        attribute :object_uuid, :aliases => 'server_uuid'
+        attribute :object_uuid
         attribute :server_uuid
         attribute :create_time
         attribute :relations
@@ -43,6 +43,8 @@ module Fog
         attribute :mac
         attribute :cpu
         attribute :request_uuid
+        attribute :template_uuid
+
 
         def cpu
           cores
@@ -56,6 +58,18 @@ module Fog
           # If we have syncronous response body from creating server, this value will be set in providedattributes function in foreman
           if (net = relations['public_ips'].find {|n|n['family']==4})
             net['ip']
+          end
+        end
+
+        def mac
+          if relations['networks'] and relations['networks'] != []
+            if relations['networks'].first
+              if relations['networks'].first['mac'] != nil
+                relations['networks'].first['mac']
+              else
+                nil
+              end
+            end
           end
         end
 
@@ -100,6 +114,9 @@ module Fog
             options[:location_uuid] = location_uuid
           end
 
+          if attributes[:template_uuid]
+            options[:template_uuid] = template_uuid
+          end
 
           data = service.server_create(name, cores, memory, options)
           merge_attributes(data.body)

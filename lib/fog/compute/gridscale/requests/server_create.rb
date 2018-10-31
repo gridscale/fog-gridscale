@@ -6,6 +6,7 @@ module Fog
 
           interfaces_attributes = options[:interfaces_attributes]
           storage = options[:storage]
+          template_uuid = options[:template_uuid]
 
           if options[:location_uuid]
             location_uuid = options[:location_uuid]
@@ -16,11 +17,11 @@ module Fog
 
           relations = {
               :isoimages => [],
-              :public_ips => [],
           }
 
           networks = []
           storages = []
+          ipaddrs = []
           bootable_set = false
           if interfaces_attributes != nil
             interfaces_attributes.each do |key, value|
@@ -32,16 +33,28 @@ module Fog
                   networks << {"network_uuid"=>value["network_uuid"]}
                 end
               end
+
+              if value["ipv4_uuid"] !=nil && value["ipv4_uuid"] != ""
+                  ipaddrs << {"ipaddr_uuid"=>value["ipv4_uuid"]}
+              end
+
+              if value["ipv6_uuid"] !=nil && value["ipv6_uuid"] != ""
+                ipaddrs << {"ipaddr_uuid"=>value["ipv6_uuid"]}
+              end
+
             end
           end
 
           if storage != nil && storage > 0
-            storages << {"create"=>{"name"=>"#{name} Storage", "capacity"=>storage, "location_uuid"=>location_uuid,"storage_type"=>"storage"}, "relation"=>{"bootdevice"=>true}}
+            if template_uuid !=nil
+              storages << {"create"=>{"name"=>"#{name} Storage", "capacity"=>storage, "location_uuid"=>location_uuid,"storage_type"=>"storage","template"=>{"template_uuid"=> template_uuid }} , "relation"=>{"bootdevice"=>true}}
+            else
+              storages << {"create"=>{"name"=>"#{name} Storage", "capacity"=>storage, "location_uuid"=>location_uuid,"storage_type"=>"storage"}, "relation"=>{"bootdevice"=>true}}
+            end
           end
           relations[:networks] = networks
           relations[:storages] = storages
-
-
+          relations[:public_ips] = ipaddrs
 
           create_options = {
               :name   => name,
@@ -66,7 +79,6 @@ module Fog
           if options[:hardware_profile]
             create_options[:hardware_profile] = options[:hardware_profile]
           end
-
 
           encoded_body = Fog::JSON.encode(create_options)
           request(
