@@ -1,5 +1,6 @@
 require "fog/core"
 require "pp"
+require "json"
 
 module Fog
   module Compute
@@ -70,6 +71,8 @@ module Fog
       collection :paas_services
       model :paas_security_zone
       collection :paas_security_zones
+      model :marketplace_template
+      collection :marketplace_templates
 
       request_path 'fog/compute/gridscale/requests'
 
@@ -244,6 +247,13 @@ module Fog
       request :paas_security_zone_delete
       request :paas_security_zone_update
 
+      #marketplace template
+      request :marketplace_template_create
+      request :marketplace_template_get
+      request :marketplace_templates_get
+      request :marketplace_template_delete
+      request :marketplace_template_update
+
       class Mock
         def self.data
           @data ||= Hash.new do |hash, key|
@@ -288,7 +298,7 @@ module Fog
           if host
             @connection = Fog::Core::Connection.new host, persistent, options
           else
-            @connection        = Fog::Core::Connection.new 'https://apidev.gridscale.io', persistent, options
+            @connection        = Fog::Core::Connection.new 'https://api.gridscale.io', persistent, options
           end
 
         end
@@ -298,11 +308,11 @@ module Fog
           begin
             response = @connection.request(params)
           rescue Excon::Errors::HTTPStatusError => error
-            raise case error
+            raise case error.response.body
                   when Excon::Errors::NotFound
-                    NotFound.slurp(error).to_s
+                    NotFound.slurp(error.response.body)
                   else
-                    error
+                    error.response.body
                   end
           end
           unless response.body.empty?
