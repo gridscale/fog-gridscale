@@ -4,18 +4,18 @@ module Fog
   module Compute
     class Gridscale
       class Interfaces < Fog::Compute::Gridscale::PagingCollection
-        model Fog::Compute::Gridscale::Interface
+        model Fog::Compute::Gridscale::ServerRelationNetwork
 
-
-        def all(filters={})
-          data = service.networks_get(filters)
-          droplets = data.body["networks"].values
-          load(droplets)
+        def all(server_uuid)
+          # requires :server_uuid
+          data = service.server_relation_networks_get(server_uuid)
+          relations = data.body['network_relations'].each
+          load(relations)
         end
 
-        def get(object_uuid)
-          network = service.network_get(object_uuid).body['network']
-          new(network) if network
+        def get(server_uuid, network_uuid)
+          networks_relation = service.server_relation_network_get(server_uuid, network_uuid).body['network_relation']
+          new(networks_relation) if networks_relation
         rescue Fog::Errors::NotFound
           nil
         end

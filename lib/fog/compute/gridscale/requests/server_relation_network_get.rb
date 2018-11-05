@@ -2,10 +2,10 @@ module Fog
   module Compute
     class Gridscale
       class Real
-        def server_relation_network_get(payload)
+        def server_relation_network_get(server_uuid, network_uuid)
 
-          server_uuid = payload[:server_uuid]
-          network_uuid = payload[:network_uuid]
+          # server_uuid = payload[:server_uuid]
+          # network_uuid = payload[:network_uuid]
 
           request(
               :expects => [200],

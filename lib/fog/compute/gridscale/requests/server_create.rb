@@ -7,7 +7,8 @@ module Fog
           interfaces_attributes = options[:interfaces_attributes]
           storage = options[:storage]
           template_uuid = options[:template_uuid]
-
+          sshkey_uuid = options[:sshkey_uuid]
+          # print sshkey_uuid
           if options[:location_uuid]
             location_uuid = options[:location_uuid]
           else
@@ -48,10 +49,16 @@ module Fog
           if storage != nil && storage > 0
             if template_uuid !=nil
               storages << {"create"=>{"name"=>"#{name} Storage", "capacity"=>storage, "location_uuid"=>location_uuid,"storage_type"=>"storage","template"=>{"template_uuid"=> template_uuid }} , "relation"=>{"bootdevice"=>true}}
+              if sshkey_uuid != nil
+                storages = []
+                storages << {"create"=>{"name"=>"#{name} Storage", "capacity"=>storage, "location_uuid"=>location_uuid,"storage_type"=>"storage","template"=>{"template_uuid"=> template_uuid, "sshkeys" => [sshkey_uuid] }} , "relation"=>{"bootdevice"=>true}}
+                # print
+              end
             else
               storages << {"create"=>{"name"=>"#{name} Storage", "capacity"=>storage, "location_uuid"=>location_uuid,"storage_type"=>"storage"}, "relation"=>{"bootdevice"=>true}}
             end
           end
+
           relations[:networks] = networks
           relations[:storages] = storages
           relations[:public_ips] = ipaddrs
@@ -79,9 +86,9 @@ module Fog
           if options[:hardware_profile]
             create_options[:hardware_profile] = options[:hardware_profile]
           end
-
+          # print create_options
           encoded_body = Fog::JSON.encode(create_options)
-          request(
+          x = request(
               :expects => [202],
               :headers => {
                   'Content-Type' => "application/json; charset=UTF-8",
@@ -90,6 +97,22 @@ module Fog
               :path    => '/objects/servers',
               :body    => encoded_body,
               )
+          # x
+          server_uuid = x.body['server_uuid']
+          # print server_uuid
+          request(
+              :expects => [200],
+              :headers => {
+                  'Content-Type' => "application/json; charset=UTF-8",
+              },
+              :method  => 'GET',
+              :path    => "/objects/servers/#{server_uuid}",
+              )
+          # service.server_get(server_uuid)
+        #   server = server_get(server_uuid).body['server']
+        #   new(server) if server
+        # rescue Fog::Errors::NotFound
+        #   nil
         end
       end
     end

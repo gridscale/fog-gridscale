@@ -28,16 +28,14 @@ module Fog
         attribute :bootable
         attribute :server_uuid
 
-        def all(_filters = {})
-          requires :vm
-          if vm.is_a? Fog::Compute::Ovirt::Server
-            load service.list_vm_interfaces(vm.id)
-          elsif vm.is_a? Fog::Compute::Ovirt::Template
-            load service.list_template_interfaces(vm.id)
-          else
-            raise ::Fog::Ovirt::Errors::OvirtError, "interfaces should have vm or template"
-          end
+        def to_s
+          :name
         end
+
+        def type
+          :network_type
+        end
+
       end
     end
   end

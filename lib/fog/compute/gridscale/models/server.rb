@@ -44,6 +44,10 @@ module Fog
         attribute :cpu
         attribute :request_uuid
         attribute :template_uuid
+        attribute :ipv4_address
+        attribute :ipv6_address
+        attribute :ip_addresses
+        attribute :sshkey_uuid
 
 
         def cpu
@@ -65,7 +69,7 @@ module Fog
           if relations['networks'] and relations['networks'] != []
             if relations['networks'].first
               if relations['networks'].first['mac'] != nil
-                relations['networks'].first['mac']
+                relations['networks'].first['mac'].to_s
               else
                 nil
               end
@@ -79,6 +83,10 @@ module Fog
             net['ip']
           end
         end
+
+        # def ip_addresses
+        #   [ipv4_address, ipv6_address]
+        # end
 
 
         def save
@@ -118,9 +126,17 @@ module Fog
             options[:template_uuid] = template_uuid
           end
 
+          if attributes[:sshkey_uuid]
+            options[:sshkey_uuid] = sshkey_uuid
+          end
+
           data = service.server_create(name, cores, memory, options)
-          merge_attributes(data.body)
-          true
+          # print data.body['server_uuid']
+          # sync_data = service.server_get(data.body['server_uuid'])
+          # pp sync_data.body
+          # pp data.body
+          merge_attributes(data.body['server'])
+          # true
         end
 
         def delete
