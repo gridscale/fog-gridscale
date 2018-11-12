@@ -61,8 +61,8 @@ module Fog
       collection :deleted_storages
       model :deleted_isoimage
       collection :deleted_isoimages
-      # model :deleted_snapshot
-      # collection :deleted_snapshots
+      model :deleted_snapshot
+      collection :deleted_snapshots
       model :deleted_template
       collection :deleted_templates
       model :isoimage
