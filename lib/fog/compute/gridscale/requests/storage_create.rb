@@ -5,7 +5,6 @@ module Fog
         def storage_create(name, capacity, options = {})
           create_options = {
               :name   => name,
-              # :location_uuid => '39a7d783-3873-4b2f-915b-4c86c28344e5',
               :capacity   => capacity,
           }
 
