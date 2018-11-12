@@ -6,13 +6,11 @@ module Fog
       class Storages < Fog::Compute::Gridscale::PagingCollection
         model Fog::Compute::Gridscale::Storage
 
-
         def all(filters={})
           data = service.storages_get(filters)
           droplets = data.body["storages"].values
           load(droplets)
         end
-
 
         def get(object_uuid)
           storage = service.storage_get(object_uuid).body['storage']
@@ -20,6 +18,7 @@ module Fog
         rescue Fog::Errors::NotFound
           nil
         end
+
       end
     end
   end

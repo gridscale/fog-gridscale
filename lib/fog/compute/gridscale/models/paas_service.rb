@@ -21,8 +21,6 @@ module Fog
         attribute :credential
         attribute :resource_limit
 
-
-
         def delete
           requires :object_uuid
           response = service.paas_service_delete object_uuid
@@ -57,6 +55,7 @@ module Fog
           merge_attributes(data.body)
           true
         end
+
       end
     end
   end

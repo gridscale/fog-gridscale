@@ -2,6 +2,7 @@ module Fog
   module Compute
     class Gridscale
       class Real
+
         def snapshots_get(storage_uuid)
           storage_uuid = storage_uuid[:storage_uuid]
           request(
@@ -10,6 +11,7 @@ module Fog
               :path    => "/objects/storages/#{storage_uuid}/snapshots/"
           )
         end
+
       end
     end
   end

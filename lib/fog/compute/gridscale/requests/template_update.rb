@@ -5,9 +5,7 @@ module Fog
 
         def template_update(template_uuid, payload={})
 
-
           encoded_body = Fog::JSON.encode(payload)
-
 
           request(
               :expects => [204],
@@ -19,6 +17,7 @@ module Fog
               :body    => encoded_body,
               )
         end
+
       end
     end
   end

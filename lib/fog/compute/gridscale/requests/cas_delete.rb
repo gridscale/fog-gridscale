@@ -2,6 +2,7 @@ module Fog
   module Compute
     class Gridscale
       class Real
+
         def cas_delete(cas_uuid)
           request(
               :expects         => [204],
@@ -12,6 +13,7 @@ module Fog
               :path            => "objects/cas/tasks/#{cas_uuid}",
               )
         end
+
       end
     end
   end

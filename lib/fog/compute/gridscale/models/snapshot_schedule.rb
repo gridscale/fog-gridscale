@@ -18,8 +18,6 @@ module Fog
         attribute :status
         attribute :storage_uuid
 
-
-
         def save
           raise Fog::Errors::Error.new('Re-saving an existing object may create a duplicate') if persisted?
           requires :storage_uuid , :name, :run_interval, :keep_snapshots
@@ -30,9 +28,7 @@ module Fog
             options[:labels] = labels
           end
 
-
           data = service.snapshot_schedule_create(storage_uuid, name, run_interval, keep_snapshots, options)
-
           merge_attributes(data.body)
           true
         end
@@ -46,11 +42,7 @@ module Fog
         def destroy
           response = service.snapshot_schedule_delete(object_uuid)
           response.body
-
         end
-
-        private
-
 
       end
     end

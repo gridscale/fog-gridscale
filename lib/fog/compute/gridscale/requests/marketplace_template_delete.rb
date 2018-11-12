@@ -2,6 +2,7 @@ module Fog
   module Compute
     class Gridscale
       class Real
+
         def marketplace_template_delete(marketplace_template_uuid)
           request(
               :expects         => [204],
@@ -12,6 +13,7 @@ module Fog
               :path            => "/objects/marketplace/templates/#{marketplace_template_uuid}",
               )
         end
+
       end
     end
   end

@@ -18,8 +18,6 @@ module Fog
         attribute :location_iata
         attribute :relations
 
-
-
         def delete
           requires :object_uuid
           response = service.paas_security_zone_delete object_uuid
@@ -60,6 +58,7 @@ module Fog
           merge_attributes(data.body)
           true
         end
+
       end
     end
   end

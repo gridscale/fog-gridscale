@@ -15,8 +15,6 @@ module Fog
         attribute :status
         attribute :user_uuid
 
-
-
         def save
           raise Fog::Errors::Error.new('Re-saving an existing object may create a duplicate') if persisted?
           requires :name, :sshkey
@@ -44,9 +42,6 @@ module Fog
           response = service.sshkey_delete(object_uuid)
           response
         end
-
-        private
-
 
       end
     end

@@ -2,6 +2,7 @@ module Fog
   module Compute
     class Gridscale
       class Real
+
         def isoimage_create(name, source_url, options)
 
           create_options = {
@@ -29,6 +30,7 @@ module Fog
               :body    => encoded_body,
               )
         end
+
       end
     end
   end

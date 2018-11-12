@@ -2,6 +2,7 @@ module Fog
   module Compute
     class Gridscale
       class Real
+
         def server_delete(server_uuid)
           request(
               :expects         => [204],
@@ -12,6 +13,7 @@ module Fog
               :path            => "/objects/servers/#{server_uuid}",
               )
         end
+
       end
     end
   end

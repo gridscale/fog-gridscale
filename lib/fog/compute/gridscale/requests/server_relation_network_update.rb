@@ -2,12 +2,8 @@ module Fog
   module Compute
     class Gridscale
       class Real
-        def server_relation_network_update(server_uuid, network_uuid, payload)
 
-          # create_options = {
-          #
-          # }
-          # create_options[:bootdevice] = options[:bootdevice]
+        def server_relation_network_update(server_uuid, network_uuid, payload)
 
           encoded_body = Fog::JSON.encode(payload)
           request(
@@ -20,6 +16,7 @@ module Fog
               :body    => encoded_body,
               )
         end
+
       end
     end
   end

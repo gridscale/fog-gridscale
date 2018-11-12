@@ -24,8 +24,6 @@ module Fog
         attribute :status
         attribute :usage_in_minutes
 
-
-
         def save
           raise Fog::Errors::Error.new('Re-saving an existing object may create a duplicate') if persisted?
           requires :family
@@ -67,9 +65,6 @@ module Fog
           response = service.ip_delete(object_uuid)
           response
         end
-
-        private
-
 
       end
     end

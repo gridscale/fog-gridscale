@@ -25,8 +25,6 @@ module Fog
         attribute :template
         attribute :template_uuid
 
-
-
         def delete
           requires :object_uuid
           response = service.storage_delete object_uuid
@@ -73,6 +71,7 @@ module Fog
           merge_attributes(data.body)
           true
         end
+
       end
     end
   end

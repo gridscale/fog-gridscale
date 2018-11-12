@@ -24,7 +24,6 @@ module Fog
         attribute :status
         attribute :usage_in_minutes
 
-
       end
     end
   end

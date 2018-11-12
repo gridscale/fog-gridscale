@@ -26,8 +26,6 @@ module Fog
         attribute :status
         attribute :usage_in_minutes
 
-
-
         def save
           raise Fog::Errors::Error.new('Re-saving an existing object may create a duplicate') if persisted?
           requires :name, :algorithm, :listen_ipv4_uuid, :listen_ipv6_uuid, :backend_servers, :forwarding_rules, :redirect_http_to_https, :labels
@@ -59,9 +57,6 @@ module Fog
           response = service.load_balancer_delete(object_uuid)
           response.body
         end
-
-        private
-
 
       end
     end

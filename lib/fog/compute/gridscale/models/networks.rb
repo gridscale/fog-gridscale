@@ -6,7 +6,6 @@ module Fog
       class Networks < Fog::Compute::Gridscale::PagingCollection
         model Fog::Compute::Gridscale::Network
 
-
         def all(filters={})
           data = service.networks_get(filters)
           droplets = data.body["networks"].values
@@ -19,6 +18,7 @@ module Fog
         rescue Fog::Errors::NotFound
           nil
         end
+
       end
     end
   end

@@ -2,6 +2,7 @@ module Fog
   module Compute
     class Gridscale
       class Real
+
         def server_relation_storages_get(server_uuid)
 
           server_uuid = server_uuid[:server_uuid]
@@ -12,6 +13,7 @@ module Fog
               :path    => "/objects/servers/#{server_uuid}/storages"
           )
         end
+
       end
     end
   end

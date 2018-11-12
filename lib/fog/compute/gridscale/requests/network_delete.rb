@@ -2,7 +2,9 @@ module Fog
   module Compute
     class Gridscale
       class Real
+
         def network_delete(network_uuid)
+
           request(
               :expects         => [204],
               :headers         => {
@@ -12,6 +14,7 @@ module Fog
               :path            => "/objects/networks/#{network_uuid}",
               )
         end
+
       end
     end
   end

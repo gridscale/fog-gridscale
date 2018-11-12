@@ -2,6 +2,7 @@ module Fog
   module Compute
     class Gridscale
       class Real
+
         def sshkey_update(sshkey_uuid, payload)
           encoded_body = Fog::JSON.encode(payload)
           request(
@@ -15,6 +16,7 @@ module Fog
 
               )
         end
+
       end
     end
   end

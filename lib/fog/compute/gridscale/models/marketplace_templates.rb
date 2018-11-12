@@ -20,6 +20,7 @@ module Fog
         rescue Fog::Errors::NotFound
           nil
         end
+
       end
     end
   end

@@ -2,13 +2,13 @@ module Fog
   module Compute
     class Gridscale
       class Real
+
         def server_create(name, cores, memory, options = {})
 
           interfaces_attributes = options[:interfaces_attributes]
           storage = options[:storage]
           template_uuid = options[:template_uuid]
           sshkey_uuid = options[:sshkey_uuid]
-          # print sshkey_uuid
           if options[:location_uuid]
             location_uuid = options[:location_uuid]
           else
@@ -97,9 +97,7 @@ module Fog
               :path    => '/objects/servers',
               :body    => encoded_body,
               )
-          # x
           server_uuid = x.body['server_uuid']
-          # print server_uuid
           request(
               :expects => [200],
               :headers => {
@@ -108,11 +106,7 @@ module Fog
               :method  => 'GET',
               :path    => "/objects/servers/#{server_uuid}",
               )
-          # service.server_get(server_uuid)
-        #   server = server_get(server_uuid).body['server']
-        #   new(server) if server
-        # rescue Fog::Errors::NotFound
-        #   nil
+
         end
       end
     end

@@ -6,8 +6,6 @@ module Fog
       class Loadbalancers < Fog::Compute::Gridscale::PagingCollection
         model Fog::Compute::Gridscale::Loadbalancer
 
-
-
         def all(filters={})
           data = service.load_balancers_get(filters)
           loadbalancers = data.body["loadbalancers"].values
@@ -21,6 +19,7 @@ module Fog
         rescue Fog::Errors::NotFound
           nil
         end
+
       end
     end
   end

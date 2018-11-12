@@ -22,8 +22,6 @@ module Fog
         attribute :storage_uuid
         attribute :payload
 
-
-
         def save
           raise Fog::Errors::Error.new('Re-saving an existing object may create a duplicate') if persisted?
           requires :server_uuid, :storage_uuid
@@ -45,14 +43,9 @@ module Fog
         end
 
         def destroy
-
           response = service.server_relation_storage_delete(object_uuid)
           response.body
-
         end
-
-        private
-
 
       end
     end

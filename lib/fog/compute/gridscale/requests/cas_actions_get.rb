@@ -2,6 +2,7 @@ module Fog
   module Compute
     class Gridscale
       class Real
+
         def cas_actions_get()
           request(
               :expects => [200],
@@ -9,6 +10,7 @@ module Fog
               :path    => "objects/cas/actions"
           )
         end
+
       end
     end
   end

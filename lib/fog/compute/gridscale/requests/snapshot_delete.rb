@@ -2,6 +2,7 @@ module Fog
   module Compute
     class Gridscale
       class Real
+
         def snapshot_delete(object_uuid)
 
           storage_uuid = object_uuid[:storage_uuid]
@@ -16,6 +17,7 @@ module Fog
               :path            => "objects/storages/#{storage_uuid}/snapshots/#{snapshot_uuid}",
               )
         end
+
       end
     end
   end

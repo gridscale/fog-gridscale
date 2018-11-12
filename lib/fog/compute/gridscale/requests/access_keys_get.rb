@@ -2,6 +2,7 @@ module Fog
   module Compute
     class Gridscale
       class Real
+
         def access_keys_get(filters = {})
           request(
               :expects => [200],
@@ -11,6 +12,7 @@ module Fog
 
           )
         end
+
       end
     end
   end

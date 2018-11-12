@@ -2,6 +2,7 @@ module Fog
   module Compute
     class Gridscale
       class Real
+
         def paas_service_create(name, paas_service_template_uuid, options = {})
           create_options = {
               :name   => name,
@@ -22,6 +23,7 @@ module Fog
               :body    => encoded_body,
               )
         end
+
       end
     end
   end

@@ -6,7 +6,6 @@ module Fog
       class PaasSecurityZones < Fog::Compute::Gridscale::PagingCollection
         model Fog::Compute::Gridscale::PaasSecurityZone
 
-
         def all(filters={})
           data = service.paas_security_zones_get(filters)
           droplets = data.body["paas_security_zones"].values
@@ -20,6 +19,7 @@ module Fog
         rescue Fog::Errors::NotFound
           nil
         end
+
       end
     end
   end

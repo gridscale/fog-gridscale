@@ -2,6 +2,7 @@ module Fog
   module Compute
     class Gridscale
       class Real
+
         def sshkey_create(name, sshkey, options = {})
 
           create_options = {
@@ -25,6 +26,7 @@ module Fog
               :body    => encoded_body,
               )
         end
+
       end
     end
   end

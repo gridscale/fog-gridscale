@@ -2,8 +2,8 @@ module Fog
   module Compute
     class Gridscale
       class Real
+
         def server_relation_networks_get(server_uuid, filters={})
-          # server_uuid = server_uuid[:server_uuid]
 
           request(
               :expects => [200],
@@ -13,6 +13,7 @@ module Fog
           )
 
         end
+
       end
     end
   end

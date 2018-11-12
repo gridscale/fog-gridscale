@@ -7,7 +7,6 @@ module Fog
 
           encoded_body = Fog::JSON.encode(payload)
 
-
           request(
               :expects => [204],
               :headers => {
@@ -18,6 +17,7 @@ module Fog
               :body    => encoded_body,
               )
         end
+
       end
     end
   end

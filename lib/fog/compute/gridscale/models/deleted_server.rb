@@ -3,8 +3,6 @@ require 'fog/core'
 module Fog
   module Compute
     class Gridscale
-      # A DigitalOcean Droplet
-      #
       class DeletedServer < Fog::Model
         identity :object_uuid
 

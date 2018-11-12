@@ -17,8 +17,8 @@ module Fog
               :body    => encoded_body,
               )
         end
+
       end
-      # noinspection RubyStringKeysInHashInspection
     end
   end
 end

@@ -2,6 +2,7 @@ module Fog
   module Compute
     class Gridscale
       class Real
+
         def template_create(name, snapshot_uuid, options={})
 
           create_options = {
@@ -23,6 +24,7 @@ module Fog
               :body    => encoded_body,
               )
         end
+
       end
     end
   end

@@ -2,6 +2,7 @@ module Fog
   module Compute
     class Gridscale
       class Real
+
         def server_relation_ip_create(server_uuid, ip_uuid, options = {})
 
           create_options = {
@@ -24,6 +25,7 @@ module Fog
               :body    => encoded_body,
               )
         end
+
       end
     end
   end

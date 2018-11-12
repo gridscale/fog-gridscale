@@ -6,7 +6,6 @@ module Fog
       class Templates < Fog::Compute::Gridscale::PagingCollection
         model Fog::Compute::Gridscale::Template
 
-
         def all(filters={})
           data = service.templates_get(filters)
           droplets = data.body["templates"].values
@@ -19,6 +18,7 @@ module Fog
         rescue Fog::Errors::NotFound
           nil
         end
+
       end
     end
   end

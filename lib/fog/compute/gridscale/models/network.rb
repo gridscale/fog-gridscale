@@ -23,8 +23,6 @@ module Fog
         attribute :relations
         attribute :status
 
-
-
         def delete
           requires :object_uuid
           response = service.network_delete object_uuid

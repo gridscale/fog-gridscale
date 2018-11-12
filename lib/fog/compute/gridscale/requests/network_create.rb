@@ -2,6 +2,7 @@ module Fog
   module Compute
     class Gridscale
       class Real
+
         def network_create(name, options={})
 
           create_options = {
@@ -33,6 +34,7 @@ module Fog
               :body    => encoded_body,
               )
         end
+
       end
     end
   end

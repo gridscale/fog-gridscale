@@ -52,9 +52,6 @@ module Fog
           response.body
         end
 
-        private
-
-
       end
     end
   end

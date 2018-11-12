@@ -2,6 +2,7 @@ module Fog
   module Compute
     class Gridscale
       class Real
+
         def server_relation_storage_delete(object_uuid)
 
           server_uuid = object_uuid[:server_uuid]
@@ -16,6 +17,7 @@ module Fog
               :path            => "/objects/servers/#{server_uuid}/storages/#{storage_uuid}",
               )
         end
+
       end
     end
   end

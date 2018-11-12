@@ -25,8 +25,6 @@ module Fog
         attribute :usage_in_minutes
         attribute :name
 
-
-
         def save
           raise Fog::Errors::Error.new('Re-saving an existing object may create a duplicate') if persisted?
           requires :storage_uuid , :name
@@ -36,11 +34,7 @@ module Fog
             options[:labels] = labels
           end
 
-
           data = service.snapshot_create(storage_uuid, name, options)
-
-
-
           merge_attributes(data.body)
           true
         end
@@ -52,14 +46,9 @@ module Fog
         end
 
         def destroy
-
           response = service.snapshot_delete(object_uuid)
           response.body
-
         end
-
-        private
-
 
       end
     end

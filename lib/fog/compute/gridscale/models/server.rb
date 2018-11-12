@@ -162,7 +162,6 @@ module Fog
           response.body['power']
         end
 
-        private
       end
     end
   end

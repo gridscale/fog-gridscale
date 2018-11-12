@@ -2,6 +2,7 @@ module Fog
   module Compute
     class Gridscale
       class Real
+
         def firewall_create(name, rules, options ={})
 
           create_options ={
@@ -23,6 +24,7 @@ module Fog
               :body    => encoded_body,
               )
         end
+
       end
     end
   end

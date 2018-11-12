@@ -7,8 +7,6 @@ module Fog
       class ServerRelationIps < Fog::Compute::Gridscale::PagingCollection
         model Fog::Compute::Gridscale::ServerRelationIp
 
-
-
         def all(server_uuid)
           data = service.server_relation_ips_get(server_uuid)
           relations = data.body['ip_relations']
@@ -22,6 +20,7 @@ module Fog
         rescue Fog::Errors::NotFound
           nil
         end
+
       end
     end
   end

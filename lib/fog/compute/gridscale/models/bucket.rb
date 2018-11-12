@@ -9,8 +9,6 @@ module Fog
         attribute :usage
         attribute :name
 
-
-
       end
     end
   end

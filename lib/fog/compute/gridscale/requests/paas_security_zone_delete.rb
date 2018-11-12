@@ -2,6 +2,7 @@ module Fog
   module Compute
     class Gridscale
       class Real
+
         def paas_security_zone_delete(paas_security_zone_uuid)
           request(
               :expects         => [204],
@@ -12,6 +13,7 @@ module Fog
               :path            => "/objects/paas/security_zones/#{paas_security_zone_uuid}",
               )
         end
+
       end
     end
   end

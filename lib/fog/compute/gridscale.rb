@@ -8,7 +8,6 @@ module Fog
       autoload :PagingCollection, File.expand_path('../gridscale/models/paging_collection', __FILE__)
 
       requires :api_token , :user_uuid
-      # attributes :host
 
       model_path 'fog/compute/gridscale/models'
       model :storage

@@ -2,6 +2,7 @@ module Fog
   module Compute
     class Gridscale
       class Real
+
         def storage_delete(storage_uuid)
           request(
               :expects         => [204],
@@ -12,6 +13,7 @@ module Fog
               :path            => "/objects/storages/#{storage_uuid}",
               )
         end
+
       end
     end
   end

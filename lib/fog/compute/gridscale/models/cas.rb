@@ -20,8 +20,6 @@ module Fog
         attribute :object_uuid
         attribute :location_uuid
 
-
-
         def save
           raise Fog::Errors::Error.new('Re-saving an existing object may create a duplicate') if persisted?
           requires :name, :action_payload,:filters, :event_type, :action_type, :labels
@@ -47,8 +45,6 @@ module Fog
           response.body
         end
 
-
-        private
       end
     end
   end

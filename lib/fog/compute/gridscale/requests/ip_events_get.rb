@@ -2,6 +2,7 @@ module Fog
   module Compute
     class Gridscale
       class Real
+
         def ip_events_get(ip_uuid)
           request(
               :expects => [200],
@@ -9,6 +10,7 @@ module Fog
               :path    => "/objects/ips/#{ip_uuid}/events"
           )
         end
+
       end
     end
   end

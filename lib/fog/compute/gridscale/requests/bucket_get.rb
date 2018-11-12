@@ -2,6 +2,7 @@ module Fog
   module Compute
     class Gridscale
       class Real
+
         def bucket_get(name)
           request(
               :expects => [200],
@@ -9,6 +10,7 @@ module Fog
               :path    => "objects/objectstorages/buckets/#{name}"
           )
         end
+
       end
     end
   end

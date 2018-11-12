@@ -2,6 +2,7 @@ module Fog
   module Compute
     class Gridscale
       class Real
+
         def load_balancer_create(name, algorithm, listen_ipv4_uuid, listen_ipv6_uuid, backend_servers, forwarding_rules, redirect_http_to_https, labels, options={})
           create_options = {
               :name   => name,
@@ -32,6 +33,7 @@ module Fog
               :body    => encoded_body,
               )
         end
+
       end
     end
   end

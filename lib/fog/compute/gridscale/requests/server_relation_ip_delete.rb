@@ -2,6 +2,7 @@ module Fog
   module Compute
     class Gridscale
       class Real
+
         def server_relation_ip_delete(object_uuid)
           server_uuid = object_uuid[:server_uuid]
           ip_uuid = object_uuid[:ip_uuid]
@@ -14,6 +15,7 @@ module Fog
               :path            => "/objects/servers/#{server_uuid}/ips/#{ip_uuid}",
               )
         end
+
       end
     end
   end

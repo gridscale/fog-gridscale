@@ -2,6 +2,7 @@ module Fog
   module Compute
     class Gridscale
       class Real
+
         def network_get(network_uuid)
           request(
               :expects => [200],
@@ -9,6 +10,7 @@ module Fog
               :path    => "/objects/networks/#{network_uuid}"
           )
         end
+
       end
     end
   end

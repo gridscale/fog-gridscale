@@ -25,8 +25,6 @@ module Fog
         attribute :usage_in_minutes
         attribute :version
 
-
-
         def delete
           requires :object_uuid
           response = service.isoimage_delete object_uuid

@@ -43,9 +43,6 @@ module Fog
 
         end
 
-        private
-
-
       end
     end
   end

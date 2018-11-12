@@ -2,6 +2,7 @@ module Fog
   module Compute
     class Gridscale
       class Real
+
         def load_balancer_delete(load_balancer_uuid)
           request(
               :expects         => [204],
@@ -12,6 +13,7 @@ module Fog
               :path            => "/objects/loadbalancers/#{load_balancer_uuid}",
               )
         end
+
       end
     end
   end

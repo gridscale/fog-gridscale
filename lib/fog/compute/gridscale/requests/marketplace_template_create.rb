@@ -2,6 +2,7 @@ module Fog
   module Compute
     class Gridscale
       class Real
+
         def marketplace_template_create(options={})
           create_options = {
           }
@@ -39,6 +40,7 @@ module Fog
               :body    => encoded_body,
               )
         end
+
       end
     end
   end

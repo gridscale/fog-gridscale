@@ -22,9 +22,6 @@ module Fog
           response = service.access_key_delete access_key
           response.body
         end
-
-
-        private
       end
     end
   end

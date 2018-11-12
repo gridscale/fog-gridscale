@@ -2,6 +2,7 @@ module Fog
   module Compute
     class Gridscale
       class Real
+
         def sshkey_delete(sshkey_uuid)
           request(
               :expects         => [204],
@@ -12,6 +13,7 @@ module Fog
               :path            => "/objects/sshkeys/#{sshkey_uuid}",
               )
         end
+
       end
     end
   end

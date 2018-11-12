@@ -27,13 +27,6 @@ module Fog
             options[:labels] = labels
           end
 
-          # options = {}
-          # options[:name] = attributes[:name]
-          # options[:action_payload] = attributes[:action_payload]
-          # options[:filters] = attributes[:event_type]
-          # options[:action_type] = attributes[:action_type]
-          # options[:event_type] = attributes[:event_type]
-
           data = service.firewall_create(name, rules, options)
           merge_attributes(data.body)
           true

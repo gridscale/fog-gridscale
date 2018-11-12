@@ -2,6 +2,7 @@ module Fog
   module Compute
     class Gridscale
       class Real
+
         def firewall_get(firewall_uuid)
           request(
               :expects => [200],
@@ -9,6 +10,7 @@ module Fog
               :path    => "/objects/firewalls/#{firewall_uuid}"
           )
         end
+
       end
     end
   end

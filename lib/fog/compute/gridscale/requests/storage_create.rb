@@ -2,6 +2,7 @@ module Fog
   module Compute
     class Gridscale
       class Real
+
         def storage_create(name, capacity, options = {})
           create_options = {
               :name   => name,
@@ -36,6 +37,7 @@ module Fog
               :body    => encoded_body,
               )
         end
+
       end
     end
   end

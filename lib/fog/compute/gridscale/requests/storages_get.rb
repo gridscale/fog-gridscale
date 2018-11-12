@@ -2,6 +2,7 @@ module Fog
   module Compute
     class Gridscale
       class Real
+
         def storages_get(filters={})
           request(
               :expects => [200],
@@ -10,6 +11,7 @@ module Fog
               :query   => filters
           )
         end
+
       end
     end
   end

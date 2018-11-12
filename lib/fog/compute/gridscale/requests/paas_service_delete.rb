@@ -2,6 +2,7 @@ module Fog
   module Compute
     class Gridscale
       class Real
+
         def paas_service_delete(paas_service_uuid)
           request(
               :expects         => [204],
@@ -12,6 +13,7 @@ module Fog
               :path            => "/objects/paas/services/#{paas_service_uuid}",
               )
         end
+
       end
     end
   end

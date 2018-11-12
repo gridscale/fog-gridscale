@@ -7,8 +7,6 @@ module Fog
       class ServerRelationNetworks < Fog::Compute::Gridscale::PagingCollection
         model Fog::Compute::Gridscale::ServerRelationNetwork
 
-
-
         def all(server_uuid)
           # requires :server_uuid
           data = service.server_relation_networks_get(server_uuid)
@@ -23,6 +21,7 @@ module Fog
         rescue Fog::Errors::NotFound
           nil
         end
+
       end
     end
   end

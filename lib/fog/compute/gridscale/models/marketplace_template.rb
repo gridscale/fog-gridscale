@@ -21,7 +21,6 @@ module Fog
         attribute :unique_hash
 
 
-
         def delete
           requires :object_uuid
           response = service.marketplace_template_delete object_uuid
@@ -66,12 +65,6 @@ module Fog
           true
         end
 
-        def update
-          requires :object_uuid
-          data = service.marketplace_template_update(object_uuid)
-          merge_attributes(data.body)
-          true
-        end
       end
     end
   end

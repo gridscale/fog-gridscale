@@ -2,6 +2,7 @@ module Fog
   module Compute
     class Gridscale
       class Real
+
         def server_relation_storage_create(server_uuid, storage_uuid, options = {})
 
           create_options = {
@@ -23,6 +24,7 @@ module Fog
               :body    => encoded_body,
               )
         end
+
       end
     end
   end

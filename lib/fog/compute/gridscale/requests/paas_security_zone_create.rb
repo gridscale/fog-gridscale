@@ -2,6 +2,7 @@ module Fog
   module Compute
     class Gridscale
       class Real
+
         def paas_security_zone_create(name, options = {})
           create_options = {
               :name   => name,
@@ -28,6 +29,7 @@ module Fog
               :body    => encoded_body,
               )
         end
+
       end
     end
   end

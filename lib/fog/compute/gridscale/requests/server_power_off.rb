@@ -2,6 +2,7 @@ module Fog
   module Compute
     class Gridscale
       class Real
+
         def server_power_off(server_uuid)
           body = { :power => false }
 
@@ -17,8 +18,8 @@ module Fog
               :body    => encoded_body,
               )
         end
-      end
 
+      end
     end
   end
 end

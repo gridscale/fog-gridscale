@@ -2,6 +2,7 @@ module Fog
   module Compute
     class Gridscale
       class Real
+
         def server_relation_storage_update(server_uuid, storage_uuid, options)
 
           encoded_body = Fog::JSON.encode(options)
@@ -15,6 +16,7 @@ module Fog
               :body    => encoded_body,
               )
         end
+
       end
     end
   end

@@ -6,8 +6,6 @@ module Fog
       class Ips < Fog::Compute::Gridscale::PagingCollection
         model Fog::Compute::Gridscale::Ip
 
-
-
         def all(filters={})
           data = service.ips_get(filters)
           ips = data.body["ips"].values
@@ -21,6 +19,7 @@ module Fog
         rescue Fog::Errors::NotFound
           nil
         end
+
       end
     end
   end

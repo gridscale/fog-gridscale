@@ -17,6 +17,7 @@ module Fog
               :body    => encoded_body,
               )
         end
+
       end
     end
   end
