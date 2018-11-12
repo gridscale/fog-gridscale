@@ -7,7 +7,7 @@ module Fog
               :expects => [200],
               :method  => 'GET',
               :path    => "/objects/loadbalancers",
-              :query => filters
+              :query   => filters
           )
         end
       end

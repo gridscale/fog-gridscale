@@ -7,7 +7,7 @@ module Fog
               :expects => [200],
               :method  => 'GET',
               :path    => "objects/objectstorages/buckets",
-              :query => filter
+              :query   => filter
           )
         end
       end
