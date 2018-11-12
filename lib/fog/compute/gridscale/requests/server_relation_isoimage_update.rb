@@ -4,11 +4,6 @@ module Fog
       class Real
         def server_relation_isoimage_update(server_uuid, isoimage_uuid, payload)
 
-          # create_options = {
-          #
-          # }
-          # create_options[:bootdevice] = options[:bootdevice]
-
           encoded_body = Fog::JSON.encode(payload)
           request(
               :expects => [202],

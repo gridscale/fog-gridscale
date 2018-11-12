@@ -4,11 +4,6 @@ module Fog
       class Real
         def server_relation_storage_update(server_uuid, storage_uuid, options)
 
-          # create_options = {
-          #
-          # }
-          # create_options[:bootdevice] = options[:bootdevice]
-
           encoded_body = Fog::JSON.encode(options)
           request(
               :expects => [202],

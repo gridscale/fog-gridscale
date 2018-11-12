@@ -3,8 +3,6 @@ module Fog
     class Gridscale
       class Real
         def server_relation_storage_delete(object_uuid)
-          # pp server_uuid
-          # pp object_uuid
 
           server_uuid = object_uuid[:server_uuid]
           storage_uuid = object_uuid[:storage_uuid]
