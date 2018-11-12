@@ -298,7 +298,7 @@ module Fog
           if host
             @connection = Fog::Core::Connection.new host, persistent, options
           else
-            @connection        = Fog::Core::Connection.new 'https://api.gridscale.io', persistent, options
+            @connection = Fog::Core::Connection.new 'https://api.gridscale.io', persistent, options
           end
 
         end
