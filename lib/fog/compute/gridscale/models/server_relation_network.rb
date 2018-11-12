@@ -47,18 +47,9 @@ module Fog
         end
 
         def destroy
-          # requires :server_uuid, :network_uuid
-          # payload={}
-          # payload[:server_uuid] = attributes[:server_uuid]
-          # payload[:network_uuid] = attributes[:network_uuid]
-          #
-          # pp :server_uuid
-          # pp :object_uuid
-          # pp "hooooooo"
 
           response = service.server_relation_network_delete(object_uuid)
           response.body
-
         end
 
         private

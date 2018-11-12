@@ -30,13 +30,9 @@ module Fog
 
         def save
           raise Fog::Errors::Error.new('Re-saving an existing object may create a duplicate') if persisted?
-          requires :name, :algorithm, :listen_ipv4_uuid, :listen_ipv6_uuid, :backend_servers, :forwarding_rules, :redirect_http_to_https
+          requires :name, :algorithm, :listen_ipv4_uuid, :listen_ipv6_uuid, :backend_servers, :forwarding_rules, :redirect_http_to_https, :labels
 
           options = {}
-
-          if attributes[:labels]
-            options[:labels] = labels
-          end
 
           if attributes[:storage_type]
             options[:storage_type] = storage_type
@@ -46,7 +42,7 @@ module Fog
             options[:location_uuid] = location_uuid
           end
 
-          data = service.ip_create(family)
+          data = service.load_balancer_create(name, algorithm, listen_ipv4_uuid, listen_ipv6_uuid, backend_servers, forwarding_rules, redirect_http_to_https, labels, options)
 
           merge_attributes(data.body)
           true
@@ -58,11 +54,11 @@ module Fog
           response.body
         end
 
-        # def destroy
-        #   requires :object_uuid
-        #   response = service.ip_delete(object_uuid)
-        #   response
-        # end
+        def destroy
+          requires :object_uuid
+          response = service.load_balancer_delete(object_uuid)
+          response.body
+        end
 
         private
 

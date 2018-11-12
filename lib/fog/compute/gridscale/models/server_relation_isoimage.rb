@@ -36,14 +36,6 @@ module Fog
         end
 
         def destroy
-          # requires :server_uuid, :isoimage_uuid
-          # payload={}
-          # payload[:server_uuid] = attributes[:server_uuid]
-          # payload[:isoimage_uuid] = attributes[:isoimage_uuid]
-          #
-          # pp :server_uuid
-          # pp :object_uuid
-          # pp "hooooooo"
 
           response = service.server_relation_isoimage_delete(object_uuid)
           response.body

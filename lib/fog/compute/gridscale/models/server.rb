@@ -3,8 +3,6 @@ require 'fog/core'
 module Fog
   module Compute
     class Gridscale
-      # A DigitalOcean Droplet
-      #
       class Server < Fog::Compute::Server
         identity :object_uuid
 
@@ -48,6 +46,8 @@ module Fog
         attribute :ipv6_address
         attribute :ip_addresses
         attribute :sshkey_uuid
+        attribute :ip4_add_in
+        attribute :ip6_add_in
 
 
         def cpu
@@ -59,7 +59,6 @@ module Fog
         end
 
         def ipv4_address
-          # If we have syncronous response body from creating server, this value will be set in providedattributes function in foreman
           if (net = relations['public_ips'].find {|n|n['family']==4})
             net['ip']
           end
@@ -78,16 +77,10 @@ module Fog
         end
 
         def ipv6_address
-          # If we have syncronous response body from creating server, this value will be set in providedattributes function in foreman
-        if (net = relations['public_ips'].find {|n|n['family']==6})
+          if (net = relations['public_ips'].find {|n|n['family']==6})
             net['ip']
           end
         end
-
-        # def ip_addresses
-        #   [ipv4_address, ipv6_address]
-        # end
-
 
         def save
           raise Fog::Errors::Error.new('Re-saving an existing object may create a duplicate') if persisted?
@@ -131,12 +124,7 @@ module Fog
           end
 
           data = service.server_create(name, cores, memory, options)
-          # print data.body['server_uuid']
-          # sync_data = service.server_get(data.body['server_uuid'])
-          # pp sync_data.body
-          # pp data.body
           merge_attributes(data.body['server'])
-          # true
         end
 
         def delete
