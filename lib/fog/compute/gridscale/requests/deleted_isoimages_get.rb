@@ -7,7 +7,7 @@ module Fog
               :expects => [200],
               :method  => 'GET',
               :path    => "objects/deleted/isoimages",
-              :query => filters
+              :query   => filters
           )
         end
       end

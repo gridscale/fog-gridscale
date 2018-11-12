@@ -7,7 +7,6 @@ module Fog
 
           create_options = {
               :name   => name,
-              # :location_uuid => "45ed677b-3702-4b36-be2a-a2eab9827950",
               :action_payload   => action_payload,
               :filters   => filters,
               :event_type => event_type,

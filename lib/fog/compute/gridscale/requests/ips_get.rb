@@ -7,7 +7,7 @@ module Fog
               :expects => [200],
               :method  => 'GET',
               :path    => "/objects/ips",
-              :query  => filters
+              :query   => filters
 
           )
         end

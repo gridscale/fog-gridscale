@@ -11,7 +11,7 @@ module Fog
               },
               :method          => 'PATCH',
               :path            => "/objects/sshkeys/#{sshkey_uuid}",
-              :body    => encoded_body,
+              :body            => encoded_body,
 
               )
         end

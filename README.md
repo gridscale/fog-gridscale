@@ -1,6 +1,6 @@
 # Fog::Gridscale
 
-This is the plugin Gem to talk to [gridscale](https://my.gridscale.io/) clouds via fog.
+This is the plugin Gem to talk to [gridscale](https://gridscale.io/) clouds via fog.
 
 ## Installation
 

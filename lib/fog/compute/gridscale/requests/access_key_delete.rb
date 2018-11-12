@@ -3,7 +3,6 @@ module Fog
     class Gridscale
       class Real
         def access_key_delete(access_key)
-          pp access_key
           request(
               :expects         => [204],
               :headers         => {

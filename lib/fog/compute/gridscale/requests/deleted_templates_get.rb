@@ -7,7 +7,7 @@ module Fog
               :expects => [200],
               :method  => 'GET',
               :path    => "objects/deleted/templates",
-              :query => filters
+              :query   => filters
           )
         end
       end
