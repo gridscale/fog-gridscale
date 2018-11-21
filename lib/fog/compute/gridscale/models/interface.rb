@@ -27,6 +27,8 @@ module Fog
         attribute :mac
         attribute :bootable
         attribute :server_uuid
+        attribute :ipv4_uuid
+        attribute :ipv6_uuid
 
         def to_s
           :name

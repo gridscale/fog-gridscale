@@ -4,7 +4,7 @@ module Fog
   module Compute
     class Gridscale
       class Interfaces < Fog::Compute::Gridscale::PagingCollection
-        model Fog::Compute::Gridscale::ServerRelationNetwork
+        model Fog::Compute::Gridscale::Interface
 
         def all(server_uuid)
           # requires :server_uuid
