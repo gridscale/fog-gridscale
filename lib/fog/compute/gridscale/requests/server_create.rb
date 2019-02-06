@@ -22,6 +22,7 @@ module Fog
           networks = []
           storages = []
           ipaddrs = []
+          isoimages = []
           bootable_set = false
           if interfaces_attributes != nil
             interfaces_attributes.each do |key, value|
