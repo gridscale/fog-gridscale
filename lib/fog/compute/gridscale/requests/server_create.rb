@@ -9,6 +9,7 @@ module Fog
           storage = options[:storage]
           template_uuid = options[:template_uuid]
           sshkey_uuid = options[:sshkey_uuid]
+          isoimage_uuid = options[:isoimage_uuid]
           if options[:location_uuid]
             location_uuid = options[:location_uuid]
           else
@@ -16,9 +17,7 @@ module Fog
           end
 
 
-          relations = {
-              :isoimages => [],
-          }
+          relations = {}
 
           networks = []
           storages = []
@@ -63,10 +62,14 @@ module Fog
               storages << {"create"=>{"name"=>"#{name} Storage", "capacity"=>storage, "location_uuid"=>location_uuid,"storage_type"=>"storage"}, "relation"=>{"bootdevice"=>true}}
             end
           end
-
+          if isoimage_uuid != nil && isoimage_uuid != ""
+            isoimages = []
+            isoimages << {"isoimage_uuid" => isoimage_uuid}
+          end
           relations[:networks] = networks
           relations[:storages] = storages
           relations[:public_ips] = ipaddrs
+          relations[:isoimages] = isoimages
 
           create_options = {
               :name   => name,

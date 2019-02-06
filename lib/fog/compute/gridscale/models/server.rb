@@ -48,6 +48,7 @@ module Fog
         attribute :sshkey_uuid
         attribute :ip4_add_in
         attribute :ip6_add_in
+        attribute :isoimage_uuid
 
 
         def cpu
@@ -121,6 +122,10 @@ module Fog
 
           if attributes[:sshkey_uuid]
             options[:sshkey_uuid] = sshkey_uuid
+          end
+
+          if attributes[:isoimage_uuid]
+            options[:isoimage_uuid] = isoimage_uuid
           end
 
           data = service.server_create(name, cores, memory, options)
