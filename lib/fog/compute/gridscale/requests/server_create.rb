@@ -9,6 +9,7 @@ module Fog
           storage = options[:storage]
           template_uuid = options[:template_uuid]
           sshkey_uuid = options[:sshkey_uuid]
+          isoimage_uuid = options[:isoimage_uuid]
           if options[:location_uuid]
             location_uuid = options[:location_uuid]
           else
@@ -16,13 +17,12 @@ module Fog
           end
 
 
-          relations = {
-              :isoimages => [],
-          }
+          relations = {}
 
           networks = []
           storages = []
           ipaddrs = []
+          isoimages = []
           bootable_set = false
           if interfaces_attributes != nil
             interfaces_attributes.each do |key, value|
@@ -45,23 +45,32 @@ module Fog
 
             end
           end
-
+          if sshkey_uuid == ""
+            sshkey_uuid = nil
+          end
           if storage != nil && storage > 0
             if template_uuid !=nil
               storages << {"create"=>{"name"=>"#{name} Storage", "capacity"=>storage, "location_uuid"=>location_uuid,"storage_type"=>"storage","template"=>{"template_uuid"=> template_uuid }} , "relation"=>{"bootdevice"=>true}}
+
               if sshkey_uuid != nil
                 storages = []
                 storages << {"create"=>{"name"=>"#{name} Storage", "capacity"=>storage, "location_uuid"=>location_uuid,"storage_type"=>"storage","template"=>{"template_uuid"=> template_uuid, "sshkeys" => [sshkey_uuid] }} , "relation"=>{"bootdevice"=>true}}
-                # print
+              else
+                storages = []
+                storages << {"create"=>{"name"=>"#{name} Storage", "capacity"=>storage, "location_uuid"=>location_uuid,"storage_type"=>"storage","template"=>{"template_uuid"=> template_uuid}} , "relation"=>{"bootdevice"=>true}}
               end
             else
               storages << {"create"=>{"name"=>"#{name} Storage", "capacity"=>storage, "location_uuid"=>location_uuid,"storage_type"=>"storage"}, "relation"=>{"bootdevice"=>true}}
             end
           end
-
+          if isoimage_uuid != nil && isoimage_uuid != ""
+            isoimages = []
+            isoimages << {"isoimage_uuid" => isoimage_uuid}
+          end
           relations[:networks] = networks
           relations[:storages] = storages
           relations[:public_ips] = ipaddrs
+          relations[:isoimages] = isoimages
 
           create_options = {
               :name   => name,
