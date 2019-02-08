@@ -1,5 +1,11 @@
 # Changelog
 
+## [v0.1.3]
+
+- fixed empty sshkey handler for storage with private template creation in
+server add
+- Allowed creating host to choose isoimage which available in gridscale user account
+
 ## [v0.1.2]
 
 - Commented out publishing protection in gemfile.
