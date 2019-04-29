@@ -1,5 +1,9 @@
 # Changelog
 
+## [v0.1.4]
+
+- Update descriptions and links to point to GitHub.
+
 ## [v0.1.3]
 
 - fixed empty sshkey handler for storage with private template creation in
