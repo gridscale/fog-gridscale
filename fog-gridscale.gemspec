@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = "Module for the 'fog' gem to support gridscale cloud platform"
   spec.description   = "This library can be used as a module for `fog` or as standalone gridscale provider"
-  spec.homepage      = "https://bitbucket.org/gridscale/fog-gridscale"
+  spec.homepage      = "https://github.com/gridscale/fog-gridscale"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
