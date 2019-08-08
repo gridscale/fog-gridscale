@@ -1,5 +1,4 @@
 require 'fog/core/collection'
-require 'fog/compute/gridscale/models/cas'
 require 'fog/compute/gridscale/models/paging_collection'
 
 module Fog
