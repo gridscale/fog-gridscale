@@ -1,6 +1,6 @@
 # Changelog
 
-## [v0.1.X] (Unreleased)
+## [v0.1.5] (Aug 28, 2019)
 
 - Remove CAS (GH-2)
 - Add interfaces method to server model (GH-3)
