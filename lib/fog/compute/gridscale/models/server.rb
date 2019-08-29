@@ -77,6 +77,11 @@ module Fog
           end
         end
 
+        def interfaces
+          requires :object_uuid
+          service.server_relation_networks.all(object_uuid)
+        end
+
         def ipv6_address
           if (net = relations['public_ips'].find {|n|n['family']==6})
             net['ip']

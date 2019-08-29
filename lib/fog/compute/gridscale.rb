@@ -20,8 +20,6 @@ module Fog
       collection :ips
       model :interface
       collection :interfaces
-      model :cas
-      collection :cass
       model :loadbalancer
       collection :loadbalancers
       model :server_relation_storage
@@ -144,15 +142,6 @@ module Fog
       request :isoimage_events_get
       request :isoimages_get
       request :isoimage_update
-
-      #cas
-      request :cas_create
-      request :cass_get
-      request :cas_delete
-      request :cas_get
-      request :cas_update
-      request :cas_events_get
-      request :cas_actions_get
 
       #snapshot
       request :snapshot_create
