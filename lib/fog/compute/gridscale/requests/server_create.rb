@@ -48,6 +48,9 @@ module Fog
           if sshkey_uuid == ""
             sshkey_uuid = nil
           end
+          if template_uuid == ""
+            template_uuid = nil
+          end
           if storage != nil && storage > 0
             if template_uuid !=nil
               storages << {"create"=>{"name"=>"#{name} Storage", "capacity"=>storage, "location_uuid"=>location_uuid,"storage_type"=>"storage","template"=>{"template_uuid"=> template_uuid }} , "relation"=>{"bootdevice"=>true}}
